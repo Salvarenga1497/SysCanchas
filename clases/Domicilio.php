@@ -8,6 +8,7 @@ class Domicilio extends Barrio {
 
 	private $_idDomicilio;
 	private $_relaEntidad;
+	private $_relaCanchas;
 	private $_relaBarrio;
 	private $_relaProvincia;
 	private $_relaLocalidad;
@@ -43,6 +44,12 @@ class Domicilio extends Barrio {
 	public function setRelaEntidad($_relaEntidad) 
 	{ 
 		 $this->_relaEntidad = $_relaEntidad; 
+		 return $this;
+	} 
+
+	public function setRelaCanchas($_relaCanchas) 
+	{ 
+		 $this->_relaCanchas = $_relaCanchas; 
 		 return $this;
 	} 
 
@@ -102,6 +109,10 @@ class Domicilio extends Barrio {
 
 	public function getRelaEntidad() {
 		return $this->_relaEntidad;
+	}
+
+	public function getRelaCanchas() {
+		return $this->_relaCanchas;
 	}
 
 	public function getIdDomicilio() {
@@ -184,6 +195,37 @@ class Domicilio extends Barrio {
 
 	}
 
+	public static function obtenerPorIdCanchas($idCanchas) {
+
+		$sql = "SELECT * FROM DOMICILIO WHERE RELA_CANCHAS=" . $idCanchas;
+
+		$database = new MySQL();
+		$datos = $database->consultar($sql);
+
+		$listadoDomicilios = [];
+
+		while ($registro = $datos->fetch_assoc()) {
+
+			$domicilio = new Domicilio();
+			$domicilio->_idDomicilio = $registro["ID_DOMICILIO"];
+			$domicilio->_relaCanchas = $registro["RELA_CANCHAS"];
+			$domicilio->_relaBarrio = $registro["RELA_BARRIO"];
+		    $domicilio->_calle = $registro["CALLE"];
+		    $domicilio->_altura = $registro["ALTURA"];
+		    $domicilio->_sector = $registro["SECTOR"];
+		    $domicilio->_manzana = $registro["MANZANA"];
+		    $domicilio->_casa = $registro["CASA"];
+		    $domicilio->_torre = $registro["TORRE"];
+		    $domicilio->_piso = $registro["PISO"];
+		    $domicilio->_departamento = $registro["DEPARTAMENTO"];
+		    $domicilio->_observacione = $registro["OBSERVACIONES"];
+		    $listadoDomicilios[] = $domicilio;
+		}
+
+		return $listadoDomicilios;
+
+	} 
+
 	public static function obtenerPorId ($id) {
 
 			$sql = "SELECT DOMICILIO.ID_DOMICILIO,DOMICILIO.RELA_BARRIO, DOMICILIO.CALLE, DOMICILIO.ALTURA, DOMICILIO.SECTOR, DOMICILIO.MANZANA, DOMICILIO.CASA, DOMICILIO.TORRE,
@@ -223,8 +265,16 @@ public function guardar() {
 
 			$database = new MySQL();
 
-			$sql = "INSERT INTO DOMICILIO (ID_DOMICILIO,RELA_ENTIDADES,RELA_BARRIO,CALLE,ALTURA,SECTOR,MANZANA,CASA,TORRE,PISO,DEPARTAMENTO) VALUES (NULL, {$this->_relaEntidad},{$this->_relaBarrio},'{$this->_calle}','{$this->_altura}','{$this->_sector}','{$this->_manzana}','{$this->_casa}','{$this->_torre}','{$this->_piso}','{$this->_departamento}')";
+			$sql = "INSERT INTO DOMICILIO (ID_DOMICILIO,RELA_ENTIDADES,CALLE,ALTURA,SECTOR,MANZANA,CASA,TORRE,PISO,DEPARTAMENTO,RELA_BARRIO) VALUES (NULL, {$this->_relaEntidad},'{$this->_calle}','{$this->_altura}','{$this->_sector}','{$this->_manzana}','{$this->_casa}','{$this->_torre}','{$this->_piso}','{$this->_departamento}',{$this->_relaBarrio})";
 
+			$database->insertar($sql);
+		}
+
+public function guardarCancha() {
+
+			$database = new MySQL();
+
+			$sql = "INSERT INTO DOMICILIO (ID_DOMICILIO,CALLE,ALTURA,SECTOR,MANZANA,CASA,TORRE,PISO,DEPARTAMENTO,RELA_BARRIO,RELA_CANCHAS) VALUES (NULL,'{$this->_calle}','{$this->_altura}','{$this->_sector}','{$this->_manzana}','{$this->_casa}','{$this->_torre}','{$this->_piso}','{$this->_departamento}',{$this->_relaBarrio}, {$this->_relaCanchas})";
 
 			$database->insertar($sql);
 		}
@@ -234,7 +284,6 @@ public function actualizar() {
 			$database = new MySQL();
 
 			$sql ="UPDATE DOMICILIO SET CALLE ='{$this->_calle}', ALTURA = '{$this->_altura}', SECTOR = '{$this->_sector}', MANZANA = '{$this->_manzana}', CASA = '{$this->_casa}', TORRE = '{$this->_torre}', PISO = '{$this->_piso}', DEPARTAMENTO = '{$this->_departamento}', RELA_BARRIO = '{$this->_relaBarrio}' WHERE DOMICILIO.ID_DOMICILIO = {$this->_idDomicilio}";
-		
 
 			$database->actualizar($sql);
 		}
@@ -242,9 +291,10 @@ public function actualizar() {
 public function eliminar() {
 
 		$sql = "DELETE FROM DOMICILIO WHERE ID_DOMICILIO={$this->_idDomicilio}";
+	
 
 		$database = new MySQL();
-		$database->eliminar($sql);		
+		$database->eliminar($sql);	
 
 	}
 

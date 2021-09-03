@@ -27,6 +27,7 @@ $lista = Cancha::obtenerTodos();
 		<th>ID Canchas</th>
 		<th>Nombre</th>
 		<th>Estado</th>
+		<th>Domicilios</th>
 		<th>Acciones</th>
 	</tr>
 
@@ -37,6 +38,11 @@ $lista = Cancha::obtenerTodos();
 			<td><?php echo $cancha->getIdCanchas(); ?></td>
 			<td><?php echo $cancha->getNombre(); ?></td>
 			<td><?php echo $cancha->getEstado(); ?></td>
+			<td>
+				<a href="../domicilios_canchas/listado.php?id_cancha=<?php echo $cancha->getIdCanchas(); ?>">
+					Ver
+				</a>
+			</td>
 			<td>
 				<a href="/programacion3/gestion_usuario/modulos/canchas/modificar.php?id_cancha=<?php echo $cancha->getIdCanchas(); ?>"> Modificar </a>
 				<a href="/programacion3/gestion_usuario/modulos/canchas/eliminar.php?id_cancha=<?php echo $cancha->getIdCanchas(); ?>"> Eliminar </a>

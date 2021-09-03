@@ -116,7 +116,7 @@ class Cancha extends Usuario{
 			} else {
 				return false;
 			}
-		}	
+		}
 
 		public function guardar() {
 
