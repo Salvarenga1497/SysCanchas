@@ -2,7 +2,10 @@
 
 require_once "../../clases/Sexo.php";
 require_once "../../clases/Tipo.php";
-
+require_once "../../js/validacion_nombre.js";
+require_once "../../js/validacion_apellido.js";
+require_once "../../js/validacion_password.js";
+require_once "../../js/validacion_username.js";
 $mensaje = "";
 
 if (isset($_GET["error"])) {
@@ -38,7 +41,8 @@ $listadoTipo = Tipo::obtenerTodos();
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+
+
 </head>
 <body>
 
@@ -56,16 +60,16 @@ $listadoTipo = Tipo::obtenerTodos();
 			Documento: <input type="int" name= "txtDocumento">
 			<br><br>
 
-			Nombre: <input type="text" name= "txtNombre">
+			Nombre: <input type="text" name= "txtNombre" id="txtNombre">
 			<br><br>
 
-			Apellido: <input type="text" name= "txtApellido">
+			Apellido: <input type="text" name= "txtApellido" id="txtApellido">
 			<br><br>
 			
-			UserName: <input type="text" name= "txtUserName">
+			UserName: <input type="text" name= "txtUserName" id="txtUserName">
 			<br><br>
 
-			Password: <input type="text" name= "txtPassword">
+			Password: <input type="text" name= "txtPassword" id="txtPassword">
 			<br><br>
 
 			Fecha Nacimiento: <input type="date" name= "txtFechaNacimiento">
@@ -100,8 +104,7 @@ $listadoTipo = Tipo::obtenerTodos();
 			</select>
 			
 			<br><br>
-			<input type="submit" name="Guardar">
-
+			<input type="submit" name="Guardar" onclick="validarNombre(); validarApellido(); validarPassword(); validarUserName();">
 
 		</form>
 </body>

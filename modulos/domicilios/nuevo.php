@@ -5,6 +5,7 @@ require_once "../../clases/Localidad.php";
 require_once "../../clases/Barrio.php";
 require_once "../../clases/Usuario.php";
 
+
 $idEntidad = $_GET['id_entidad'];
 
 $listadoProvincia = Provincia::obtenerTodos();
@@ -18,7 +19,38 @@ $listadoBarrio = Barrio::obtenerTodos();
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<!DOCTYPE html>
+<html>
+<head>
+
+	<script type="text/javascript" src="jquery.3.6.js"></script>
+
+	<script type="text/javascript">
+		
+		function cargarLocalidades() {
+		    
+			var cboProvincia = $("#cboProvincia");
+
+			var idProvincia = cboProvincia.val();
+
+			$.ajax({
+				method: "GET",
+				url: "cargarLocalidades.php",
+				data: {id: idProvincia}
+			})
+			   .done(function(respuesta) {
+
+                   $("#cboLocalidad").html(respuesta);
+			   })
+			   .fail(function() {
+			   		alert("ERROR");
+			   });
+
+
+		}
+
+	</script>
+
 </head>
 <body>
 
@@ -59,7 +91,7 @@ $listadoBarrio = Barrio::obtenerTodos();
 			<br><br>
 
 			Provincia:
-			<select name="cboProvincia">
+			<select onchange="cargarLocalidades();" id="cboProvincias" name="cboProvincia">
 				<option value="NULL">--Seleccionar--</option>
 
 				<?php foreach ($listadoProvincia as $provincia): ?>
@@ -74,7 +106,7 @@ $listadoBarrio = Barrio::obtenerTodos();
 			<br><br>
 
 			Localidad:
-			<select name="cboLocalidad">
+			<select name="cboLocalidad" id="cboLocalidades">
 				<option value="NULL">--Seleccionar--</option>
 
 				<?php foreach ($listadoLocalidad as $localidad): ?>
@@ -89,7 +121,7 @@ $listadoBarrio = Barrio::obtenerTodos();
 			<br><br>
 
 			Barrio: 
-			<select name="cboBarrio">
+			<select name="cboBarrio" id="cboBarrio">
 				<option value="NULL">--Seleccionar--</option>
 
 				<?php foreach ($listadoBarrio as $barrio): ?>
