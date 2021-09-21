@@ -1,6 +1,23 @@
 <?php
 require_once "../../clases/Usuario.php";
 require_once "../../clases/Canchas.php";
+$mensaje = "";
+
+if (isset($_GET["error"])) {
+
+	switch ($_GET["error"]) {
+		case 'nombre':
+			$mensaje = "El nombre no debe estar vacio y debe tener minimo 3 caracteres";
+			break;
+		}
+
+	switch ($_GET["error"]) {
+		case 'iduser':
+			$mensaje = "Seleccione una opcion";
+			break;
+		}
+
+}
 
 $listadoUsuarios = Usuario::obtenerTodos();
 
@@ -19,6 +36,10 @@ $cancha = Cancha::obtenerPorId($id_cancha);
 
 
 	<?php require_once "../../menu.php";?>
+	
+	<br><br>
+
+	<?php echo $mensaje; ?>	
 	
 	<br><br>
 
@@ -55,9 +76,6 @@ $cancha = Cancha::obtenerPorId($id_cancha);
 				<?php endforeach?>
 			</select>
 
-			<br><br>
-
-			Estado: <input type="text" name= "txtEstado" value="<?php echo $cancha->getEstado(); ?>">
 			<br><br>
 
 			<input type="submit" name="Guardar" value="Actualizar">

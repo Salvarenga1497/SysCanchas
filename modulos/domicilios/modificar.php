@@ -19,7 +19,43 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<script type="text/javascript" src="jquery.3.6.js"></script>
+
+	<script type="text/javascript">
+
+	function cargarLocalidades() {
+			var cboProvincias = $("#cboProvincias");
+			var idProvincia = cboProvincias.val();
+			$.ajax({
+			method: "POST",
+			url:"cargarLocalidades.php",
+			data: {id: idProvincia}
+			})
+			.done(function(respuesta) {
+                   $("#cboLocalidades").html(respuesta);
+			})
+			.fail(function() {
+			   		alert("ERROR");
+			});
+		}
+
+
+	function cargarBarrio() {
+			var cboLocalidades = $("#cboLocalidades");
+			var idLocalidad = cboLocalidades.val();
+			$.ajax({
+			method: "POST",
+			url:"cargarBarrio.php",
+			data: {id: idLocalidad}
+			})
+			.done(function(respuesta) {
+                   $("#cboBarrio").html(respuesta);
+			})
+			.fail(function() {
+			   		alert("ERROR");
+			});
+		}
+</script>
 </head>
 <body>
 
@@ -59,7 +95,7 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 			<br><br>
 
 			Provincia: 
-			<select name="cboProvincia">
+			<select name="cboProvincia" id="cboProvincias" onchange="cargarLocalidades();">
 				<option value="NULL">--Seleccionar--</option>
 
 				<?php foreach ($listadoProvincia as $provincia): ?>
@@ -82,7 +118,7 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 			<br><br>
 
 			Localidad: 
-			<select name="cboLocalidad">
+			<select name="cboLocalidad" id="cboLocalidades" onchange="cargarBarrio();">
 				<option value="NULL">--Seleccionar--</option>
 
 				<?php foreach ($listadoLocalidad as $localidad): ?>
@@ -105,7 +141,7 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 			<br><br>
 
 			Barrio: 
-			<select name="cboBarrio">
+			<select name="cboBarrio" id="cboBarrio">
 				<option value="NULL">--Seleccionar--</option>
 
 				<?php foreach ($listadoBarrio as $barrio): ?>

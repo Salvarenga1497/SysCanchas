@@ -106,9 +106,9 @@ class Entidad  {
 		
 		public function actualizar() {
 
-			$sql = "UPDATE ENTIDADES SET NOMBRE ='{$this->_nombre}', APELLIDO = '{$this->_apellido}', DOC = '{$this->_documento}', FECHA_NAC ='{$this->_fechaNacimiento}', RELA_TIPO = {$this->_relatipo}, RELA_SEXO = {$this->_relasexo} WHERE ENTIDADES.ID_ENTIDADES = {$this->_idEntidad} ";	
+			$sql = "UPDATE ENTIDADES SET NOMBRE ='{$this->_nombre}', APELLIDO = '{$this->_apellido}', DOC = '{$this->_documento}', FECHA_NAC ='{$this->_fechaNacimiento}', RELA_TIPO = {$this->_relatipo}, RELA_SEXO = {$this->_relasexo} WHERE ENTIDADES.ID_ENTIDADES = {$this->_relaEntidades} ";	
 			
-;
+			
 			$database = new MySQL();
 			$database->actualizar($sql);
 		}
@@ -116,11 +116,13 @@ class Entidad  {
 
 		public function eliminar() {
 
-			$sql = "UPDATE ENTIDADES SET ESTADO = 2 WHERE ID_ENTIDADES = {$this->_idEntidad}";
+			$sql = "UPDATE ENTIDADES SET ESTADO = 2 WHERE ID_ENTIDADES = {$this->_relaEntidades}";
 
-
+			
+		
 			$database = new MySQL();
 			$database-> eliminar($sql);
+
 		}	
 
 

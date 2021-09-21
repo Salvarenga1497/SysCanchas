@@ -1,6 +1,20 @@
 <?php
 
 require_once "../../clases/Modulo.php";
+$mensaje = "";
+
+if (isset($_GET["error"])) {
+
+	switch ($_GET["error"]) {
+		case 'nombre':
+			$mensaje = "El nombre no debe estar vacio y debe tener minimo 3 caracteres";
+			break;
+
+		case 'directorio':
+			$mensaje = "El directorio no debe estar vacio y debe tener minimo 3 caracteres";
+			break;
+		}
+}
 
 $id_modulo = $_GET["id_modulo"];
 
@@ -16,6 +30,10 @@ $moduloUsuario = Modulo::obtenerPorId($id_modulo);
 
 
 	<?php require_once "../../menu.php";?>
+	
+	<br><br>
+
+	<?php echo $mensaje; ?>	
 	
 	<br><br>
 

@@ -26,8 +26,13 @@ if (strlen($username) < 3) {
 	exit;
 }
 
-if (strlen($contrasena) < 8) {
+if (strlen($contrasena) < 6) {
 	header("location: nuevo.php?error=contrasena");
+	exit;
+}
+
+if ($tipo == "NULL") {
+	header("location: nuevo.php?error=tipo");
 	exit;
 }
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <script>
-    function validarApellido() {
+    function validarNombre() {
             var nombre = document.getElementById("txtNombre").value;
 
             if (nombre.trim() == "") {

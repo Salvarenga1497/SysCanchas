@@ -14,8 +14,8 @@ $casa = $_POST['txtCasa'];
 $torre = $_POST['txtTorre'];
 $piso = $_POST['txtPiso'];
 $departamento = $_POST['txtDepartamento'];
-$provincia = $_POST['cboProvincia'];
-$localidad = $_POST['cboLocalidad'];
+$provincia = $_POST['cboProvincias'];
+$localidad = $_POST['cboLocalidades'];
 $barrio = $_POST['cboBarrio'];
 
 $domicilio = new Domicilio();

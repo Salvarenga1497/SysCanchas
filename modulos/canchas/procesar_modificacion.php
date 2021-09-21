@@ -4,9 +4,18 @@ require_once "../../clases/Canchas.php";
 
 
 $id_cancha = $_POST["txtIdCancha"];
-$nombre = $_POST['txtNombre'];
+$nombre = trim($_POST['txtNombre']);
 $usuario = $_POST['cboUsuario'];
-$estado = $_POST['txtEstado'];
+
+if (strlen($nombre) < 3) {
+	header("location: modificar.php?error=nombre&id_cancha=" . $id_cancha);
+	exit;
+}
+
+if ($usuario == "NULL") {
+	header("location: modificar.php?error=iduser&id_cancha=" . $id_cancha);
+	exit;
+}
 
 $usuario = Usuario::obtenerPorid($usuario);
 

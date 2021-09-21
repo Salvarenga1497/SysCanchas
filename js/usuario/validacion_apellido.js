@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <script>
-        function validarNombre() {
-            var nombre = document.getElementById("txtApellido").value;
+        function validarApellido() {
+            var apellido = document.getElementById("txtApellido").value;
 
-            if (nombre.trim() == "") {
+            if (apellido.trim() == "") {
                 alert("Debe completar el campo apellido");
             } 
             
-            if (nombre.length < 3) {
+            if (apellido.length < 3) {
                 alert("El apellido debe contener mas de 3 carácteres");
             } 
         }

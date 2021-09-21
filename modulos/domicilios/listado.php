@@ -31,7 +31,7 @@ $listadoDomicilios = Domicilio::obtenerPorIdEntidad($idEntidad);
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	
 </head>
 <body>
 
@@ -80,4 +80,6 @@ $listadoDomicilios = Domicilio::obtenerPorIdEntidad($idEntidad);
 
 </body>
 </html>
+
+
 

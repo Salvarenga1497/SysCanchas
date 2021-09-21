@@ -1,9 +1,9 @@
 <?php
 
 require_once "MySQL.php";
-require_once "Localidad.php";
 
-class Barrio extends Localidad {
+
+class Barrio {
 
 	private $_idBarrio;
 	private $_descripcion;
@@ -32,6 +32,30 @@ class Barrio extends Localidad {
 	public static function obtenerTodos() {
 			
 			$sql = "SELECT * FROM BARRIO";
+
+			$database = new MySQL();
+			$datos = $database->consultar($sql);
+
+			$listadoBarrio = [];
+
+			while ($registro = $datos->fetch_assoc()) {
+
+				$barrio = new Barrio();
+				$barrio->_idBarrio = $registro["ID_BARRIO"];
+				$barrio->_descripcion = $registro["DESCRIPCION"];
+				$barrio->_relaLocalidad = $registro["RELA_LOCALIDAD"];
+				$listadoBarrio[] = $barrio;
+			
+		}		  
+		
+		return $listadoBarrio;
+
+	}
+
+	public static function obtenerPorIdLocalidad($id) {
+			
+			$sql = "SELECT * FROM BARRIO WHERE RELA_LOCALIDAD=" . $id;
+			
 
 			$database = new MySQL();
 			$datos = $database->consultar($sql);

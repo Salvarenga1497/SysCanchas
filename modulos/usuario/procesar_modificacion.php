@@ -4,14 +4,45 @@ require_once "../../clases/Usuario.php";
 
 
 $id_usuario = $_POST["txtIdUsuario"];
-$documento = $_POST['txtDocumento'];
-$nombre = $_POST['txtNombre'];
-$apellido = $_POST['txtApellido'];
-$username = $_POST['txtUserName'];
+$documento = trim($_POST['txtDocumento']);
+$nombre = trim($_POST['txtNombre']);
+$apellido = trim($_POST['txtApellido']);
+$username = trim($_POST['txtUserName']);
 $fechaNacimiento = $_POST['txtFechaNacimiento'];
 $sexo = $_POST['cboSexo'];
 $tipo = $_POST['cboTipo'];
-$contrasena = $_POST['txtPassword'];
+$contrasena = trim($_POST['txtPassword']);
+
+if (strlen($nombre) < 3) {
+	header("location: modificar.php?error=nombre&id_usuario=" . $id_usuario);
+	exit;
+}
+
+if (strlen($apellido) < 3) {
+	header("location: modificar.php?error=apellido&id_usuario=" . $id_usuario);
+	exit;
+}
+
+if (strlen($username) < 3) {
+	header("location: modificar.php?error=username&id_usuario=" . $id_usuario);
+	exit;
+}
+
+if (strlen($contrasena) < 6) {
+	header("location: modificar.php?error=contrasena&id_usuario=" . $id_usuario);
+	exit;
+}
+
+if ($sexo == "NULL") {
+	header("location: modificar.php?error=sexo&id_usuario=" . $id_usuario);
+	exit;
+}
+
+if ($tipo == "NULL") {
+	header("location: modificar.php?error=tipo&id_usuario=" . $id_usuario);
+	exit;
+}
+
 
 
 

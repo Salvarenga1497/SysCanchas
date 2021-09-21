@@ -3,11 +3,46 @@
 require_once "../../clases/Agenda.php";
 
 $id_agenda = $_POST["txtIdAgenda"];
-$fechaInicio = $_POST['dateFechaInicio'];
-$fechaFin = $_POST['dateFechaFin'];
-$horaInicio = $_POST['timeHoraInicio'];
-$horaFin = $_POST['timeHoraFin'];
-$duracion = $_POST['timeDuracion'];
+$fechaInicio = trim($_POST['dateFechaInicio']);
+$fechaFin = trim($_POST['dateFechaFin']);
+$horaInicio = trim($_POST['timeHoraInicio']);
+$horaFin = trim($_POST['timeHoraFin']);
+$duracion = trim($_POST['timeDuracion']);
+
+if ($fechaInicio == "") {
+	header("location: modificar.php?error=fechaInicio&id_agenda=" . $id_agenda);
+	exit;
+}
+
+if ($fechaFin == "") {
+	header("location: modificar.php?error=fechaFin&id_agenda=" . $id_agenda);
+	exit;
+}
+
+if ($horaInicio == "") {
+	header("location: modificar.php?error=horaInicio&id_agenda=" . $id_agenda);
+	exit;
+}
+
+if ($horaInicio == "00:00:00") {
+	header("location: modificar.php?error=horaInicio&id_agenda=" . $id_agenda);
+	exit;
+}
+
+if ($horaFin == "") {
+	header("location: modificar.php?error=horaFin&id_agenda=" . $id_agenda);
+	exit;
+}
+
+if ($horaFin == "00:00:00") {
+	header("location: modificar.php?error=horaFin&id_agenda=" . $id_agenda);
+	exit;
+}
+
+if ($duracion == "") {
+	header("location: modificar.php?error=duracion&id_agenda=" . $id_agenda);
+	exit;
+}
 
 
 $agenda = Agenda::obtenerPorId($id_agenda);

@@ -1,6 +1,17 @@
 <?php
 
 require_once "../../clases/Perfil.php";
+$mensaje = "";
+
+if (isset($_GET["error"])) {
+
+	switch ($_GET["error"]) {
+		case 'descripcion':
+			$mensaje = "El nombre no debe estar vacio y debe tener minimo 3 caracteres";
+			break;
+		}
+
+}
 
 $id_perfil = $_GET["id_perfil"];
 
@@ -16,6 +27,10 @@ $perfil = Perfil::obtenerXId($id_perfil);
 
 
 	<?php require_once "../../menu.php";?>
+	
+	<br><br>
+
+	<?php echo $mensaje; ?>	
 	
 	<br><br>
 

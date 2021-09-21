@@ -4,8 +4,19 @@ require_once "../../clases/Modulo.php";
 
 
 $id_modulo = $_POST["txtIdModulo"];
-$descripcion = $_POST['txtNombre'];
-$directorio = $_POST['txtDirectorio'];
+$descripcion = trim($_POST['txtNombre']);
+$directorio = trim($_POST['txtDirectorio']);
+
+if (strlen($descripcion) < 3) {
+	header("location: modificar.php?error=nombre&id_modulo=" . $id_modulo);
+	exit;
+}
+
+if (strlen($directorio) < 3) {
+	header("location: modificar.php?error=nombre&id_modulo=" . $id_modulo);
+	exit;
+}
+
 
 
 

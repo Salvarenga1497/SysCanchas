@@ -157,7 +157,7 @@ class Agenda {
 
 			$database = new MySQL();
 
-			$sql ="UPDATE AGENDA SET FECHA_INICIO ='{$this->_fechaInicio}', FECHA_FIN ='{$this->_fechaFin}', HORA_INICIO ='{$this->_horaInicio}', HORA_FIN = '{$this->_horaFin}', DURACION = '{$this->_duracion}', ESTADO = 'Alta' WHERE AGENDA.ID_AGENDA = {$this->_idAgenda}";
+			$sql ="UPDATE AGENDA SET FECHA_INICIO ='{$this->_fechaInicio}', FECHA_FIN ='{$this->_fechaFin}', HORA_INICIO ='{$this->_horaInicio}', HORA_FIN = '{$this->_horaFin}', DURACION = '{$this->_duracion}', ESTADO = '1' WHERE AGENDA.ID_AGENDA = {$this->_idAgenda}";
 		
 
 			$database->actualizar($sql);

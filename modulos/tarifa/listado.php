@@ -40,7 +40,7 @@ $lista = Tarifa::obtenerTodos();
 			<td><?php echo $tarifa->getIdTarifa(); ?></td>
 			<td><?php echo $tarifa->getHoraInicio(); ?></td>
 			<td><?php echo $tarifa->getHoraFin(); ?></td>
-			<td><?php echo $tarifa->getTipo(); ?></td>
+			<td><?php echo $tarifa->getRelaTipoTarifa(); ?></td>
 			<td><?php echo $tarifa->getMonto(); ?></td>
 			<td><?php echo $tarifa->getRelaCanchas(); ?></td>
 			<td>

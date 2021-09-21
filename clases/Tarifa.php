@@ -8,7 +8,7 @@ class Tarifa extends Cancha {
 	private $_idTarifa;
 	private $_horaInicio;
 	private $_horaFin;
-	private $_tipo;
+	private $_relaTipoTarifa;
 	private $_monto;
 	private $_relaCanchas;
 
@@ -46,15 +46,15 @@ class Tarifa extends Cancha {
 		return $this->_horaFin; 
 	} 	
 
-	public function setTipo($_tipo) 
+	public function setRelaTipoTarifa($_relaTipoTarifa) 
 	{ 
-		$this->_tipo = $_tipo; 
+		$this->_relaTipoTarifa = $_relaTipoTarifa; 
 		return $this;
 	} 	
 
-	public function getTipo()
+	public function getRelaTipoTarifa()
 	{ 
-		return $this->_tipo; 
+		return $this->_relaTipoTarifa; 
 	} 	
 
 	public function setMonto($_monto) 
@@ -95,7 +95,7 @@ class Tarifa extends Cancha {
 				$tarifa->_idTarifa = $registro["ID_TARIFA"];
 				$tarifa->_horaInicio = $registro["HORA_INICIO"];
 				$tarifa->_horaFin = $registro["HORA_FIN"];
-				$tarifa->_tipo = $registro["TIPO"];
+				$tarifa->_relaTipoTarifa = $registro["RELA_TIPO_TARIFA"];
 				$tarifa->_monto = $registro["MONTO"];
 				$tarifa->_relaCanchas = $registro["RELA_CANCHAS"];
 				$listadoTarifa[] = $tarifa;
@@ -108,7 +108,7 @@ class Tarifa extends Cancha {
 
 	public static function obtenerPorId ($id) {
 
-			$sql = "SELECT TARIFA.ID_TARIFA, TARIFA.HORA_INICIO, TARIFA.HORA_FIN, TARIFA.TIPO, TARIFA.MONTO, TARIFA.RELA_CANCHAS FROM TARIFA JOIN CANCHAS ON CANCHAS.ID_CANCHAS=TARIFA.RELA_CANCHAS WHERE ID_TARIFA=" . $id; 
+			$sql = "SELECT TARIFA.ID_TARIFA, TARIFA.HORA_INICIO, TARIFA.HORA_FIN, TARIFA.RELA_TIPO_TARIFA, TARIFA.MONTO, TARIFA.RELA_CANCHAS FROM TARIFA JOIN CANCHAS ON CANCHAS.ID_CANCHAS=TARIFA.RELA_CANCHAS WHERE ID_TARIFA=" . $id; 
 
 			$database = new MySQL();
 			$datos = $database-> consultar($sql);
@@ -120,7 +120,7 @@ class Tarifa extends Cancha {
 				$tarifa->_idTarifa = $registro["ID_TARIFA"];
 				$tarifa->_horaInicio = $registro["HORA_INICIO"];
 				$tarifa->_horaFin = $registro["HORA_FIN"];
-				$tarifa->_tipo = $registro["TIPO"];
+				$tarifa->_relaTipoTarifa = $registro["RELA_TIPO_TARIFA"];
 				$tarifa->_monto = $registro["MONTO"];
 				$tarifa->_relaCanchas = $registro["RELA_CANCHAS"];
 
@@ -133,7 +133,7 @@ class Tarifa extends Cancha {
 
 			$database = new MySQL();
 
-			$sql = "INSERT INTO TARIFA (ID_TARIFA, RELA_CANCHAS, HORA_INICIO, HORA_FIN, TIPO, MONTO ) VALUES (NULL, {$this->getRelaCanchas()}, '{$this->getHoraInicio()}', '{$this->getHoraFin()}', '{$this->getTipo()}', {$this->getMonto()})";
+			$sql = "INSERT INTO TARIFA (ID_TARIFA, RELA_CANCHAS, HORA_INICIO, HORA_FIN, RELA_TIPO_TARIFA, MONTO ) VALUES (NULL, {$this->getRelaCanchas()}, '{$this->getHoraInicio()}', '{$this->getHoraFin()}', {$this->getRelaTipoTarifa()}, {$this->getMonto()})";
 
 
 			$database->insertar($sql);
@@ -145,9 +145,8 @@ class Tarifa extends Cancha {
 
 			$database = new MySQL();
 
-			$sql ="UPDATE TARIFA SET HORA_INICIO ='{$this->_horaInicio}', HORA_FIN = '{$this->_horaFin}', TIPO = '{$this->_tipo}', MONTO = {$this->_monto} WHERE TARIFA.ID_TARIFA = {$this->_idTarifa}";
+			$sql ="UPDATE TARIFA SET RELA_CANCHAS = {$this->_relaCanchas}, HORA_INICIO ='{$this->_horaInicio}', HORA_FIN = '{$this->_horaFin}', RELA_TIPO_TARIFA = {$this->_relaTipoTarifa}, MONTO = {$this->_monto} WHERE TARIFA.ID_TARIFA = {$this->_idTarifa}";
 		
-
 			$database->actualizar($sql);
 		}
 

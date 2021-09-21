@@ -1,4 +1,42 @@
+<?php 
+$mensaje = "";
 
+if (isset($_GET["error"])) {
+
+	switch ($_GET["error"]) {
+		case 'fechaInicio':
+			$mensaje = "La fecha de Inicio no debe estar vacio debe elegir una opcion";
+			break;
+	}
+
+	switch ($_GET["error"]) {
+		case 'fechaFin':
+			$mensaje = "La Fecha de Fin no debe estar vacio debe elegir una opcion";
+			break;
+	}
+
+	switch ($_GET["error"]) {
+		case 'horaInicio':
+			$mensaje = "La Hora de Inicio no debe estar vacio debe elegir una opcion";
+			break;
+	}
+
+	switch ($_GET["error"]) {
+		case 'horaFin':
+			$mensaje = "La Hora de Fin no debe estar vacio debe elegir una opcion";
+			break;
+	}
+
+	switch ($_GET["error"]) {
+		case 'duracion':
+			$mensaje = "La Duracion no debe estar vacio debe elegir una opcion";
+			break;
+	}
+
+}
+
+
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -11,6 +49,12 @@
 	<?php require_once "../../menu.php";?>
 	
 	<br><br>
+
+
+	<?php echo $mensaje; ?>
+
+	<br><br>
+
 
 		<form method="POST" action= "procesar.php">  
 

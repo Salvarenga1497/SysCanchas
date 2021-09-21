@@ -59,7 +59,7 @@ $lista = Usuario::obtenerTodos();
 			</td>			
 			<td>
 				<a href="modificar.php?id_usuario=<?php echo $usuario->getIdUsuario(); ?>"> Modificar </a>
-				<a href="eliminar.php?id_usuario=<?php echo $usuario->getIdUsuario(); ?>"> Eliminar </a>
+				<a href="eliminar.php?id_usuario=<?php echo $usuario->getIdUsuario();?>&id_entidad=<?php echo $usuario->getRelaEntidades(); ?>"> Eliminar </a>
 			</td>
 
 		</tr>

@@ -3,9 +3,9 @@
 require_once "../../clases/Sexo.php";
 require_once "../../clases/Tipo.php";
 require_once "../../js/validacion_nombre.js";
-require_once "../../js/validacion_apellido.js";
-require_once "../../js/validacion_password.js";
-require_once "../../js/validacion_username.js";
+require_once "../../js/usuario/validacion_apellido.js";
+require_once "../../js/usuario/validacion_password.js";
+require_once "../../js/usuario/validacion_username.js";
 $mensaje = "";
 
 if (isset($_GET["error"])) {
@@ -25,6 +25,10 @@ if (isset($_GET["error"])) {
 		
 		case 'contrasena':
 				$mensaje = "El contrasena no debe estar vacio y debe tener minimo 8 caracteres";
+			break;
+
+		case 'tipo':
+			$mensaje = "Seleccione una opcion en tipo";
 			break;
 		
 	}

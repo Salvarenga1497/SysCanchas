@@ -1,16 +1,13 @@
 <?php
 
 require_once "../../clases/Provincia.php";
-require_once "../../clases/Localidad.php";
-require_once "../../clases/Barrio.php";
 require_once "../../clases/Usuario.php";
-
 
 $idEntidad = $_GET['id_entidad'];
 
 $listadoProvincia = Provincia::obtenerTodos();
-$listadoLocalidad = Localidad::obtenerTodos();
-$listadoBarrio = Barrio::obtenerTodos();
+
+
 
 ?>
 
@@ -23,33 +20,44 @@ $listadoBarrio = Barrio::obtenerTodos();
 <html>
 <head>
 
-	<script type="text/javascript" src="jquery.3.6.js"></script>
+	
+<script type="text/javascript" src="jquery.3.6.js"></script>
 
 	<script type="text/javascript">
-		
-		function cargarLocalidades() {
-		    
-			var cboProvincia = $("#cboProvincia");
 
-			var idProvincia = cboProvincia.val();
-
+	function cargarLocalidades() {
+			var cboProvincias = $("#cboProvincias");
+			var idProvincia = cboProvincias.val();
 			$.ajax({
-				method: "GET",
-				url: "cargarLocalidades.php",
-				data: {id: idProvincia}
+			method: "POST",
+			url:"cargarLocalidades.php",
+			data: {id: idProvincia}
 			})
-			   .done(function(respuesta) {
-
-                   $("#cboLocalidad").html(respuesta);
-			   })
-			   .fail(function() {
+			.done(function(respuesta) {
+                   $("#cboLocalidades").html(respuesta);
+			})
+			.fail(function() {
 			   		alert("ERROR");
-			   });
-
-
+			});
 		}
 
-	</script>
+
+	function cargarBarrio() {
+			var cboLocalidades = $("#cboLocalidades");
+			var idLocalidad = cboLocalidades.val();
+			$.ajax({
+			method: "POST",
+			url:"cargarBarrio.php",
+			data: {id: idLocalidad}
+			})
+			.done(function(respuesta) {
+                   $("#cboBarrio").html(respuesta);
+			})
+			.fail(function() {
+			   		alert("ERROR");
+			});
+		}
+</script>
 
 </head>
 <body>
@@ -91,8 +99,8 @@ $listadoBarrio = Barrio::obtenerTodos();
 			<br><br>
 
 			Provincia:
-			<select onchange="cargarLocalidades();" id="cboProvincias" name="cboProvincia">
-				<option value="NULL">--Seleccionar--</option>
+			<select name="cboProvincias" id="cboProvincias" onchange="cargarLocalidades();">
+				<option value=0>--Seleccionar--</option>
 
 				<?php foreach ($listadoProvincia as $provincia): ?>
 
@@ -106,31 +114,15 @@ $listadoBarrio = Barrio::obtenerTodos();
 			<br><br>
 
 			Localidad:
-			<select name="cboLocalidad" id="cboLocalidades">
-				<option value="NULL">--Seleccionar--</option>
-
-				<?php foreach ($listadoLocalidad as $localidad): ?>
-
-					<option value="<?php echo $localidad->getIdLocalidad(); ?>">
-						<?php echo $localidad->getDescripcion(); ?>
-					</option>
-
-				<?php endforeach?>
+			<select name="cboLocalidades" id="cboLocalidades" onchange="cargarBarrio();">
+				<option value=0>--Seleccionar--</option>
 			</select>
 
 			<br><br>
 
 			Barrio: 
-			<select name="cboBarrio" id="cboBarrio">
-				<option value="NULL">--Seleccionar--</option>
-
-				<?php foreach ($listadoBarrio as $barrio): ?>
-
-					<option value="<?php echo $barrio->getIdBarrio(); ?>">
-						<?php echo $barrio->getDescripcion(); ?>
-					</option>
-
-				<?php endforeach?>
+			<select name="cboBarrio"  id="cboBarrio">
+				<option value=0>--Seleccionar--</option>
 			</select>
 			
 			
@@ -141,3 +133,4 @@ $listadoBarrio = Barrio::obtenerTodos();
 		</form>
 </body>
 </html>
+

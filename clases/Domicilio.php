@@ -235,6 +235,7 @@ class Domicilio extends Barrio {
 					 JOIN LOCALIDAD ON BARRIO.RELA_LOCALIDAD=LOCALIDAD.ID_LOCALIDAD
 					 JOIN PROVINCIA ON LOCALIDAD.RELA_PROVINCIA=PROVINCIA.ID_PROVINCIA
 					 WHERE ID_DOMICILIO=" . $id; 
+
 	
 			$database = new MySQL();
 			$datos = $database-> consultar($sql);
@@ -266,6 +267,7 @@ public function guardar() {
 			$database = new MySQL();
 
 			$sql = "INSERT INTO DOMICILIO (ID_DOMICILIO,RELA_ENTIDADES,CALLE,ALTURA,SECTOR,MANZANA,CASA,TORRE,PISO,DEPARTAMENTO,RELA_BARRIO) VALUES (NULL, {$this->_relaEntidad},'{$this->_calle}','{$this->_altura}','{$this->_sector}','{$this->_manzana}','{$this->_casa}','{$this->_torre}','{$this->_piso}','{$this->_departamento}',{$this->_relaBarrio})";
+	
 
 			$database->insertar($sql);
 		}
@@ -275,6 +277,7 @@ public function guardarCancha() {
 			$database = new MySQL();
 
 			$sql = "INSERT INTO DOMICILIO (ID_DOMICILIO,CALLE,ALTURA,SECTOR,MANZANA,CASA,TORRE,PISO,DEPARTAMENTO,RELA_BARRIO,RELA_CANCHAS) VALUES (NULL,'{$this->_calle}','{$this->_altura}','{$this->_sector}','{$this->_manzana}','{$this->_casa}','{$this->_torre}','{$this->_piso}','{$this->_departamento}',{$this->_relaBarrio}, {$this->_relaCanchas})";
+
 
 			$database->insertar($sql);
 		}
@@ -291,6 +294,7 @@ public function actualizar() {
 public function eliminar() {
 
 		$sql = "DELETE FROM DOMICILIO WHERE ID_DOMICILIO={$this->_idDomicilio}";
+	
 	
 
 		$database = new MySQL();

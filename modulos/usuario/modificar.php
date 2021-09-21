@@ -3,6 +3,37 @@
 require_once "../../clases/Usuario.php";
 require_once "../../clases/Sexo.php";
 require_once "../../clases/Tipo.php";
+$mensaje = "";
+
+if (isset($_GET["error"])) {
+
+	switch ($_GET["error"]) {
+		case 'nombre':
+			$mensaje = "El nombre no debe estar vacio y debe tener minimo 3 caracteres";
+			break;
+
+		case 'apellido':
+				$mensaje = "El apellido no debe estar vacio y debe tener minimo 3 caracteres";
+			break;
+
+		case 'username':
+				$mensaje = "El username no debe estar vacio y debe tener minimo 3 caracteres";
+			break;
+		
+		case 'contrasena':
+				$mensaje = "El contrasena no debe estar vacio y debe tener minimo 8 caracteres";
+			break;
+
+		case 'sexo':
+			$mensaje = "Seleccione una opcion en sexo";
+			break;
+
+		case 'tipo':
+			$mensaje = "Seleccione una opcion en tipo";
+			break;
+		
+	}
+}
 
 $listadoSexo = Sexo::obtenerTodos();
 $listadoTipo = Tipo::obtenerTodos();
@@ -21,6 +52,10 @@ $user = Usuario::obtenerPorId($id_usuario);
 
 
 	<?php require_once "../../menu.php";?>
+	
+	<br><br>
+
+	<?php echo $mensaje; ?>	
 	
 	<br><br>
 

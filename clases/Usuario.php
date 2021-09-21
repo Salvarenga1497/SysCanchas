@@ -254,8 +254,9 @@ require_once "Perfil.php";
 
 		public function eliminar() {
 
-			$sql = "UPDATE USUARIOS SET USERNAME ='{$this->_username}', CONTRASENA = '{$this->_contrasena}', FECHA_ALTA = '{$this->_fechaAlta}' WHERE USUARIOS.ID_USUARIOS = {$this->_idUsuario}";
+			$sql = "UPDATE USUARIOS SET USERNAME ='{$this->_username}', CONTRASENA = '{$this->_contrasena}', FECHA_ALTA = '{$this->_fechaAlta}', RELA_ENTIDADES = '{$this->_relaEntidades}' WHERE USUARIOS.ID_USUARIOS = {$this->_idUsuario}";
 
+			
 			$database = new MySQL();
 			$database-> eliminar($sql);
 
