@@ -1,0 +1,223 @@
+div#Principal{
+  display: block;
+  min-height: 532px;
+}
+
+div.Form{
+  margin:0 auto;
+  background-color: white;
+  height: auto;
+  width: 540px;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+form.Formulario{
+  background-color: white;
+  margin: 5px;
+  padding: 5px;
+  font-size: 18px;
+  font-family: "Calibri";
+  width: 500px;
+  height: auto;
+}
+
+
+div.Form form.Formulario input.Guardar{
+  margin-left: 220px;
+}
+
+div.Form form.Formulario input.Guardar:hover{
+  background-color: green;
+  color: white;
+}
+
+div.Form form.Formulario input{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}
+
+div.Form form.Formulario select{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}
+
+div#PrimerPantalla{
+  display: block;
+}
+
+div#SegundaPantalla{
+  display: none;
+}
+
+div#SegundaPantalla{
+  text-align: center;
+}
+
+div#PrimerPantalla{
+  text-align: center;
+}
+
+div#TercerPantalla{
+  text-align: center;
+}
+
+div#TercerPantalla{
+  display: none;
+}
+
+div#CuartaPantalla{
+  display: none;
+}
+
+div#CuartaPantalla{
+  margin-top: -30px;
+ 
+}
+
+div#Guardar{
+  display: block;
+  margin-top: 10px;
+  display: none;
+}
+
+div.Titulos{
+  text-align: center;
+}
+
+div.Titulos h2{
+ display: inline-block;
+ margin-right:20px;
+ border: solid;
+ border-radius: 8px;
+ border-color: green;
+ background-color: white;
+}
+
+
+div.Titulos h2#Primero{
+  background-color: green;
+  color: white;
+}
+
+
+button.PrimerSiguiente{
+ margin-right:20px;
+ border: solid;
+ border-radius: 8px;
+ border-color: green;
+ background-color: white;
+ margin-left: 60px;
+}
+
+button.PrimerSiguiente:hover{
+  background-color: green;
+  color: white;
+}
+
+button.SegundoSiguiente{
+ margin-right:150px;
+ border: solid;
+ border-radius: 8px;
+ border-color: green;
+ background-color: white;
+ margin-left: 20px;
+ margin-top: 30px;
+
+}
+
+button.SegundoSiguiente:hover{
+  background-color: green;
+  color: white;
+}
+
+button.PrimerAtras{
+ border: solid;
+ border-radius: 8px;
+ border-color: green;
+ background-color: white;
+ margin-left: 150px;
+}
+
+button.PrimerAtras:hover{
+  background-color: green;
+  color: white;
+}
+
+
+
+button.SegundoAtras{
+ border: solid;
+ border-radius: 8px;
+ border-color: green;
+ background-color: white;
+ margin-left: 60px;
+ margin-right: 150px;
+ margin-top: 60px;
+}
+
+button.SegundoAtras:hover{
+  background-color: green;
+  color: white;
+}
+
+button.Terminar{
+
+ border: solid;
+ border-radius: 8px;
+ border-color: green;
+ background-color: white;
+ margin-left: -120px;
+}
+
+button.Terminar:hover{
+  background-color: green;
+  color: white;
+}
+
+div#Pie{
+ display: block;
+ background-color: green;
+ color: #CCC;
+ text-align: center;
+  padding-right: 340px;
+  padding-left: 360px;
+ margin-bottom: -16px;
+ margin-right: 0px;
+ margin-left: -8px;
+}
+
+button.TercerAtras{
+  display: block;
+ border: solid;
+ border-radius: 8px;
+ border-color: green;
+ background-color: white;
+ margin-left: 140px;
+ margin-right: 150px;
+margin-top: -4.5%
+}
+
+button.TercerAtras:hover{
+  background-color: green;
+  color: white;
+}
+
+div#Referencia p{
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: green;
+  font-weight: bold;
+  background-color: white;
+  margin-right: 550px;
+  margin-left: 550px;
+  border: solid;
+ border-radius: 8px;
+ border-color: green;
+ font-family: "Calibri";
+}

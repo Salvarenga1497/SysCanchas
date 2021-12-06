@@ -29,10 +29,7 @@ class MySQL {
 
 
 
+
 }
 
-//$database = new MySQL();
-//$sql = "INSERT INTO ENTIDADES (ID_ENTIDADES,NOMBRE,APELLIDO,DOC,FECH_NAC,TIPO,ESTADO) VALUES (NULL, 'YANINA','RAMIREZ','56968456','1997-01-22','USUARIO',1);";
-
-//$database->insertar($sql);
 ?>

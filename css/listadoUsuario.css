@@ -1,0 +1,106 @@
+div#Principal{
+  display: block;
+  min-height: 442px;
+}
+
+div.Tabla{
+  margin: 0 auto;
+  position: center;
+  background-color: white;
+  height: auto;
+  width: 1000px;
+  padding-top:30px;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+td, th {
+  font-family: "Helvetica";
+  border: black 1px solid;
+}
+
+table.Lista{
+  background-color: white;
+  margin: 0 auto;
+  text-align: center;
+  align-content: center;
+  height: auto;
+  width: 95%;
+  border: solid;
+  border-radius: 5px;
+  border-color: green;
+  margin-bottom: 5px;
+}
+table caption.titulo{
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 22px;
+  color: green;
+	background-color: white;
+  margin: 0 auto;
+  text-align: center;
+  align-content: center;
+  border: solid;
+  border-radius: 5px;
+  border-color: green;
+  padding: 10px;
+}
+
+table tr.Fila1{
+	background-color: #A0E470;
+	color: black
+}
+
+div.Tabla table.Lista tr td a{
+  display: inline-block;
+  background-color: green;
+  color:white;
+  font-family: "Calibri";
+  font-size: 15px;
+  text-decoration:none;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+div#Pie{
+display: block;
+  background-color: green;
+  color: #CCC;
+  text-align: center;
+  padding-right: 340px;
+  padding-left: 360px;
+  margin-left: -8px;
+  margin-bottom: -16px;
+
+}
+
+
+section.Filtar label#Buscar{
+  display: inline-block;
+  background-color: green;
+  color:white;
+  font-family: "Calibri";
+  font-size: 22px;
+  text-decoration:none;
+  border-radius: 5px;
+  margin-left: 50px;
+  padding: 3px;
+  font-weight: bold;
+}
+
+section.Filtar input#Input{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}
+
+section.Filtar input#Boton{
+     border: solid;
+  border-color: green;
+  border-radius: 8px;}
+
+section.Filtar input#Boton:hover{
+    background-color: green;
+  color: white;}

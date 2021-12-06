@@ -15,26 +15,69 @@ if (isset($_GET["error"])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>FUTLINE</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Alvarenga Sebastian" >
+    <meta name="description" content="Alquilar canchas de futbol">
+    <meta name="keywords" content="futbol, alquilar, cancha, futbol5, formosa">
+    <link rel="shortcut icon" href="../../imagenes/logo/logoo.png">
+    <link rel="STYLESHEET" type="text/css" href="../../css/menu.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/FormularioNuevoSexo.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/body.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/mensaje.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/nombre.css">
 </head>
 <body>
 
+	<header>
+        <img src="../../imagenes/logo/logoPrincipal.png" alt="logo">
+    </header>
 
-	<?php require_once "../../menu.php";?>
+	<div>
+
+		<?php require_once "../../menu.php";?>
+
+	</div>
 	
 	<br><br>
 
-	<?php echo $mensaje; ?>
+	<div id="Principal">
+
+	<div class="Nombre">
+
+		<?php echo "Nuevo Sexo"?>
+
+	</div>
 
 	<br><br>
 
-		<form method="POST" action= "procesar.php">  
+	<div class="mensaje">
 
-			Nuevo Sexo: <input type="text" name= "txtNombre" id="txtNombre">
+		<?php echo $mensaje; ?>
+
+	</div>
+
+	<br><br>
+
+	<div class="Form">
+
+		<form method="POST" action= "procesar.php" class="Formulario">  
+
+			<label for="Nuevo Sexo">Nuevo Sexo:</label>
+			<input type="text" name= "txtNombre" id="txtNombre">
 			<br><br>	
 			
-			<input type="submit" value="Guardar" onclick="validarNombre();">
+			<input class="Guardar" type="submit" value="Guardar" onclick="validarNombre();">
 		</form>
 
+	</div>
+
+</div>
+
+	<div  id="Pie">
+
+		<?php require_once "../../pie.php";?>
+
+	</div>
 </body>
 </html>

@@ -1,20 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script>
-    function validarNombre() {
-            var nombre = document.getElementById("txtNombre").value;
 
-            if (nombre.trim() == "") {
-                alert("Debe completar el campo nombre");
-            } 
-            
-            if (nombre.length < 3) {
-                alert("El nombre debe contener mas de 3 carácteres");
-            } 
-        }
-    </script>
-</head>
-<body>
-</body>
-</html>
+function validarNombre() {
+
+	event.preventDefault();
+
+	var nombre = document.getElementById("txtNombre").value;
+
+	if (nombre.trim() == "") {
+		swal({
+			title: "El nombre no puede estar vacio",
+			icon: "warning",
+		}); 
+
+	}
+
+	else if (nombre.length < 3) {
+		swal({
+			title: "El nombre debe contener mas de 3 carácteres",
+			icon: "warning",
+		});
+	} 
+
+
+	else {
+		document.getElementById("FormularioUsuario").submit();
+	}
+
+}
+

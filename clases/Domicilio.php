@@ -2,9 +2,11 @@
 
 require_once "MySQL.php";
 require_once "Barrio.php";
+require_once "Localidad.php";
+require_once "Provincia.php";
 
 
-class Domicilio extends Barrio {
+class Domicilio {
 
 	private $_idDomicilio;
 	private $_relaEntidad;
@@ -188,6 +190,9 @@ class Domicilio extends Barrio {
 		    $domicilio->_piso = $registro["PISO"];
 		    $domicilio->_departamento = $registro["DEPARTAMENTO"];
 		    $domicilio->_observacione = $registro["OBSERVACIONES"];
+		    $domicilio->barrio = Barrio::obtenerPorId($domicilio->_relaBarrio);
+		    $domicilio->barrio ->localidad = Localidad::obtenerPorId($domicilio->barrio->_relaLocalidad);
+		    $domicilio->barrio ->localidad->provincia = Provincia::obtenerPorId($domicilio->barrio->localidad->_relaProvincia);
 		    $listadoDomicilios[] = $domicilio;
 		}
 
@@ -219,6 +224,9 @@ class Domicilio extends Barrio {
 		    $domicilio->_piso = $registro["PISO"];
 		    $domicilio->_departamento = $registro["DEPARTAMENTO"];
 		    $domicilio->_observacione = $registro["OBSERVACIONES"];
+		    $domicilio->barrio = Barrio::obtenerPorId($domicilio->_relaBarrio);
+		    $domicilio->barrio ->localidad = Localidad::obtenerPorId($domicilio->barrio->_relaLocalidad);
+		    $domicilio->barrio ->localidad->provincia = Provincia::obtenerPorId($domicilio->barrio->localidad->_relaProvincia);
 		    $listadoDomicilios[] = $domicilio;
 		}
 
@@ -277,6 +285,8 @@ public function guardarCancha() {
 			$database = new MySQL();
 
 			$sql = "INSERT INTO DOMICILIO (ID_DOMICILIO,CALLE,ALTURA,SECTOR,MANZANA,CASA,TORRE,PISO,DEPARTAMENTO,RELA_BARRIO,RELA_CANCHAS) VALUES (NULL,'{$this->_calle}','{$this->_altura}','{$this->_sector}','{$this->_manzana}','{$this->_casa}','{$this->_torre}','{$this->_piso}','{$this->_departamento}',{$this->_relaBarrio}, {$this->_relaCanchas})";
+
+			
 
 
 			$database->insertar($sql);

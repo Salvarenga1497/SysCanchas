@@ -1,9 +1,10 @@
 <?php
 
 require_once "../../clases/Domicilio.php";
-require_once "../../clases/Canchas.php";
+require_once "../../clases/Cancha.php";
 
 $idCancha = $_POST["txtIdCanchas"];
+$idUsuario = $_POST["txtIdUsuario"];
 
 
 $calle = $_POST['txtCalle'];
@@ -34,7 +35,7 @@ $domicilio->setRelaBarrio($barrio);
 
 $domicilio->guardarCancha();
 
-header("location: listado.php?id_cancha=" . $idCancha);
+header("location: listado.php?id_cancha=" . $idCancha . "&id_usuario=" . $idUsuario);
 
 
 ?>

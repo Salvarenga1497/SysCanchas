@@ -1,0 +1,10 @@
+footer.pie{
+	display: block;
+	background-color: green;
+	color: #CCC;
+	text-align: center;
+	padding-right: 175px;
+	padding-left: 120px;
+	margin-bottom: -16px;
+}
+

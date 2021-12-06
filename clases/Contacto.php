@@ -104,9 +104,6 @@ class Contacto {
 	public function eliminar() {
 
 		$sql = "DELETE FROM ENTIDAD_CONTACTO WHERE ID_ENTIDAD_CONTACTO={$this->_idEntidadesContacto}";
-
-
-
 		
 		$database = new MySQL();
 		$database->eliminar($sql);		

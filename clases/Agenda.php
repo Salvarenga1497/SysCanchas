@@ -1,5 +1,6 @@
 <?php
 
+require_once "Cancha.php";
 require_once "MySQL.php";
 
 class Agenda {
@@ -11,6 +12,8 @@ class Agenda {
 	private $_horaFin;
 	private $_duracion;
 	private $_estado;
+	private $_relaCancha;
+	private $_generado;
 
 
 	public function setIdAgenda($_idAgenda) 
@@ -90,6 +93,28 @@ class Agenda {
 		return $this->_estado; 
 	}
 
+	public function setRelaCancha($_relaCancha) 
+	{ 
+		$this->_relaCancha = $_relaCancha; 
+		return $this;
+	} 	
+
+	public function getRelaCancha()
+	{ 
+		return $this->_relaCancha; 
+	}
+
+	public function setGenerado($_generado) 
+	{ 
+		$this->_generado = $_generado; 
+		return $this;
+	} 	
+
+	public function getGenerado()
+	{ 
+		return $this->_generado; 
+	}
+
 
 	public static function obtenerTodos() {
 			
@@ -110,6 +135,9 @@ class Agenda {
 				$agenda->_horaFin = $registro["HORA_FIN"];
 				$agenda->_duracion = $registro["DURACION"];
 				$agenda->_estado = $registro["ESTADO"];
+				$agenda->_relaCancha = $registro["RELA_CANCHAS"];
+				$agenda->_generado = $registro["GENERADO"];
+				$agenda->cancha = Cancha::obtenerPorId($agenda->_relaCancha);
 				$listadoAgenda[] = $agenda;
 			
 		}		  
@@ -135,21 +163,102 @@ class Agenda {
 				$agenda->_horaInicio = $registro["HORA_INICIO"];
 				$agenda->_horaFin = $registro["HORA_FIN"];
 				$agenda->_duracion = $registro["DURACION"];
-				$agenda->_estado = $registro["ESTADO"];;
+				$agenda->_estado = $registro["ESTADO"];
+				$agenda->_relaCancha = $registro["RELA_CANCHAS"];
+				$agenda->_generado = $registro["GENERADO"];
 
 				return $agenda;
 			}
 }	
 
 
+	public static function obtenerPorIdCanchas($idCanchas) {
+
+		$sql = "SELECT * FROM AGENDA WHERE RELA_CANCHAS=" . $idCanchas . " AND ESTADO= 1";
+
+	
+
+		$database = new MySQL();
+		$datos = $database->consultar($sql);
+
+		while ($registro = $datos->fetch_assoc()) {
+
+			$agenda = new Agenda();
+			$agenda->_idAgenda = $registro["ID_AGENDA"];
+			$agenda->_relaCanchas = $registro["RELA_CANCHAS"];
+			$agenda->_fechaInicio = $registro["FECHA_INICIO"];
+		    $agenda->_fechaFin = $registro["FECHA_FIN"];
+		    $agenda->_horaInicio = $registro["HORA_INICIO"];
+		    $agenda->_horaFin = $registro["HORA_FIN"];
+		    $agenda->_duracion = $registro["DURACION"];
+		    $agenda->_estado = $registro["ESTADO"];
+		    $agenda->_generado = $registro["GENERADO"];
+
+			return $agenda;
+
+	} 
+
+}
+
+
+public static function obtenerUltimoId() {
+
+		$sql = "SELECT MAX(ID_AGENDA) AS ID_AGENDA FROM AGENDA";
+
+	
+
+		$database = new MySQL();
+		$datos = $database->consultar($sql);
+
+		while ($registro = $datos->fetch_assoc()) {
+
+			$agenda = new Agenda();
+			$agenda->_idAgenda = $registro["ID_AGENDA"];
+			return $agenda;
+
+	} 
+
+}
+
+	public static function obtenerPorIdCancha($idCanchas) {
+			
+			$sql = "SELECT * FROM AGENDA WHERE RELA_CANCHAS=" . $idCanchas . " AND ESTADO= 1";
+
+			$database = new MySQL();
+			$datos = $database->consultar($sql);
+
+			$listadoAgenda = [];
+
+			while ($registro = $datos->fetch_assoc()) {
+
+				$agenda = new Agenda();
+				$agenda->_idAgenda = $registro["ID_AGENDA"];
+				$agenda->_fechaInicio = $registro["FECHA_INICIO"];
+				$agenda->_fechaFin = $registro["FECHA_FIN"];
+				$agenda->_horaInicio = $registro["HORA_INICIO"];
+				$agenda->_horaFin = $registro["HORA_FIN"];
+				$agenda->_duracion = $registro["DURACION"];
+				$agenda->_estado = $registro["ESTADO"];
+				$agenda->_relaCancha = $registro["RELA_CANCHAS"];
+				$agenda->_generado = $registro["GENERADO"];
+				$listadoAgenda[] = $agenda;
+			
+		}		  
+		
+		return $listadoAgenda;
+
+	}
+
+
+
 	public function guardar() {
 
 			$database = new MySQL();
 
-			$sql = "INSERT INTO AGENDA (ID_AGENDA, FECHA_INICIO,FECHA_FIN, HORA_INICIO, HORA_FIN, DURACION) VALUES (NULL, '{$this->getFechaInicio()}', '{$this->getFechaFin()}', '{$this->getHoraInicio()}', '{$this->getHoraFin()}', '{$this->getDuracion()}')";
+			$sql = "INSERT INTO AGENDA (ID_AGENDA, RELA_CANCHAS, FECHA_INICIO,FECHA_FIN, HORA_INICIO, HORA_FIN, DURACION) VALUES (NULL,{$this->getRelaCancha()}, '{$this->getFechaInicio()}', '{$this->getFechaFin()}', '{$this->getHoraInicio()}', '{$this->getHoraFin()}', '{$this->getDuracion()}')";
 
-			$database->insertar($sql);
-
+		 $database->insertar($sql);
+			
 		}
 
 		public function actualizar() {
@@ -157,11 +266,22 @@ class Agenda {
 
 			$database = new MySQL();
 
-			$sql ="UPDATE AGENDA SET FECHA_INICIO ='{$this->_fechaInicio}', FECHA_FIN ='{$this->_fechaFin}', HORA_INICIO ='{$this->_horaInicio}', HORA_FIN = '{$this->_horaFin}', DURACION = '{$this->_duracion}', ESTADO = '1' WHERE AGENDA.ID_AGENDA = {$this->_idAgenda}";
+			$sql ="UPDATE AGENDA SET RELA_CANCHAS ={$this->_relaCancha}, FECHA_INICIO ='{$this->_fechaInicio}', FECHA_FIN ='{$this->_fechaFin}', HORA_INICIO ='{$this->_horaInicio}', HORA_FIN = '{$this->_horaFin}', DURACION = '{$this->_duracion}', ESTADO = '1' WHERE AGENDA.ID_AGENDA = {$this->_idAgenda}";
 		
 
 			$database->actualizar($sql);
 		}	
+
+		public function actualizarGenerado() {
+
+
+			$database = new MySQL();
+
+			$sql ="UPDATE AGENDA SET GENERADO = '2' WHERE AGENDA.ID_AGENDA = {$this->_idAgenda}";
+		
+
+			$database->actualizar($sql);
+		}
 
 		public function eliminar() {
 

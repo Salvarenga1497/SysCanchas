@@ -1,5 +1,6 @@
 <?php
 require_once "../../clases/Domicilio.php";
+require_once "../../clases/Cancha.php";
 require_once "../../clases/Barrio.php";
 require_once "../../clases/Localidad.php";
 require_once "../../clases/Provincia.php";
@@ -10,7 +11,10 @@ $listadoLocalidad = Localidad::obtenerTodos();
 $listadoProvincia = Provincia::obtenerTodos();
 
 $idCancha = $_GET['id_cancha'];
+$cancha = Cancha::obtenerPorId($idCancha);
+$nombre = $cancha->getNombre();
 $id_domicilio = $_GET["id_domicilio"];
+$idUsuario = $_GET["id_usuario"];
 
 
 $domicilio = Domicilio::obtenerPorId($id_domicilio);
@@ -19,6 +23,18 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 <!DOCTYPE html>
 <html>
 <head>
+	<title>FUTLINE</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Alvarenga Sebastian" >
+    <meta name="description" content="Alquilar canchas de futbol">
+    <meta name="keywords" content="futbol, alquilar, cancha, futbol5, formosa">
+    <link rel="shortcut icon"  href="../../imagenes/logo/logoo.png">
+    <link rel="STYLESHEET" type="text/css" href="../../css/menu.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/pie.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/body.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/formularioNuevoDomicilio.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/nombre.css">
+
 	<script type="text/javascript" src="jquery.3.6.js"></script>
 
 	<script type="text/javascript">
@@ -59,42 +75,72 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 </head>
 <body>
 
+	<header>
+        <img src="../../imagenes/logo/logoPrincipal.png" alt="logo">
+    </header>
 
-	<?php require_once "../../menu.php";?>
+	<section>
+
+		<?php require_once "../../menu.php";?>
+
+	</section>
+
+	<br><br>
+
+<div id="Principal">
+	
+	<div class="Nombre">
+
+		<?php echo "Modificar domicilio de la cancha: " . $nombre?>
+
+	</div>
+	
 	
 	<br><br>
 
-		<form method="POST" action= "procesar_modificacion.php">  
+	<div class="Form">
+
+		<form method="POST" action= "procesar_modificacion.php" class="Formulario">  
 			
 			<input type="hidden" name="txtIdCancha" value="<?php echo $idCancha; ?>">
 
 			<input type="hidden" name="txtIdDomicilio" value="<?php echo $id_domicilio; ?>">
 
-			Calle: <input type="text" name= "txtCalle" value="<?php echo $domicilio->getCalle(); ?>">
-			<br><br>	
+			<input type="hidden" name="txtIdUsuario" value="<?php echo $idUsuario; ?>">
 
-			Altura: <input type="text" name= "txtAltura" value="<?php echo $domicilio->getAltura(); ?>">
+			<label for="Calle:">Calle:</label>
+			<input type="text" name= "txtCalle" value="<?php echo $domicilio->getCalle(); ?>">
+				
+
+			<label for="Altura:">Altura:</label>
+			<input type="text" name= "txtAltura" value="<?php echo $domicilio->getAltura(); ?>">
 			<br><br>
 
-			Sector: <input type="text" name= "txtSector" value="<?php echo $domicilio->getSector(); ?>" >
+			<label for="Sector:">Sector:</label>
+			<input type="text" name= "txtSector" value="<?php echo $domicilio->getSector(); ?>" >
+			
+
+			<label for="Manzana:">Manzana:</label>
+			<input type="text" name= "txtManzana" value="<?php echo $domicilio->getManzana(); ?>">
 			<br><br>
 
-			Manzana: <input type="text" name= "txtManzana" value="<?php echo $domicilio->getManzana(); ?>">
+			<label for="Casa:">Casa:</label>
+			<input type="text" name= "txtCasa" value="<?php echo $domicilio->getCasa(); ?>">
+			
+
+			<label for="Torre:">Torre:</label>
+			<input type="text" name= "txtTorre" value="<?php echo $domicilio->getTorre(); ?>">
 			<br><br>
 
-			Casa: <input type="text" name= "txtCasa" value="<?php echo $domicilio->getCasa(); ?>">
+			<label for="Piso:">Piso:</label>
+			<input type="text" name= "txtPiso" value="<?php echo $domicilio->getPiso(); ?>">
 			<br><br>
 
-			Torre: <input type="text" name= "txtTorre" value="<?php echo $domicilio->getTorre(); ?>">
+			<label for="Departamento:">Departamento:</label>
+			<input type="text" name= "txtDepartamento" value="<?php echo $domicilio->getDepartamento(); ?>">
 			<br><br>
 
-			Piso: <input type="text" name= "txtPiso" value="<?php echo $domicilio->getPiso(); ?>">
-			<br><br>
-
-			Departamento: <input type="text" name= "txtDepartamento" value="<?php echo $domicilio->getDepartamento(); ?>">
-			<br><br>
-
-			Provincia: 
+			<label for="Provincia:">Provincia:</label>
 			<select name="cboProvincia" id="cboProvincias" onchange="cargarLocalidades();">
 				<option value="0">--Seleccionar--</option>
 
@@ -115,9 +161,9 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 				<?php endforeach?>
 			</select>
 
-			<br><br>
+			
 
-			Localidad: 
+			<label for="Localidad:">Localidad:</label>
 			<select name="cboLocalidad" id="cboLocalidades" onchange="cargarBarrio();">
 				<option value="0">--Seleccionar--</option>
 
@@ -140,7 +186,7 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 
 			<br><br>
 
-			Barrio: 
+			<label for="Barrio:">Barrio:</label>
 			<select name="cboBarrio" id="cboBarrio">
 				<option value="0">--Seleccionar--</option>
 
@@ -163,9 +209,21 @@ $domicilio = Domicilio::obtenerPorId($id_domicilio);
 
 			<br><br>
 			
-			<input type="submit" name="Guardar" value="Actualizar">
+			<input class="Guardar" type="submit" name="Guardar" value="Actualizar">
 
 
 		</form>
+
+	</div>
+</div>
+
+
+	<div id="Pie">
+
+
+        <?php require_once "../../pie.php";?>
+
+    </div>
+
 </body>
 </html>

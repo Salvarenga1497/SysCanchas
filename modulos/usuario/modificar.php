@@ -2,7 +2,8 @@
 
 require_once "../../clases/Usuario.php";
 require_once "../../clases/Sexo.php";
-require_once "../../clases/Tipo.php";
+require_once "../../clases/Perfil.php";
+
 $mensaje = "";
 
 if (isset($_GET["error"])) {
@@ -24,10 +25,6 @@ if (isset($_GET["error"])) {
 				$mensaje = "El contrasena no debe estar vacio y debe tener minimo 8 caracteres";
 			break;
 
-		case 'sexo':
-			$mensaje = "Seleccione una opcion en sexo";
-			break;
-
 		case 'tipo':
 			$mensaje = "Seleccione una opcion en tipo";
 			break;
@@ -36,9 +33,12 @@ if (isset($_GET["error"])) {
 }
 
 $listadoSexo = Sexo::obtenerTodos();
-$listadoTipo = Tipo::obtenerTodos();
+$listadoPerfil = Perfil::obtenerTodos();
 
-$id_usuario = $_GET["id_usuario"];
+$id_usuario = $_GET["idUsuario"];
+
+$idUsuario = $_GET["id_usuario"];
+
 
 $user = Usuario::obtenerPorId($id_usuario);
 
@@ -46,89 +46,143 @@ $user = Usuario::obtenerPorId($id_usuario);
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>FUTLINE</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Alvarenga Sebastian" >
+    <meta name="description" content="Alquilar canchas de futbol">
+    <meta name="keywords" content="futbol, alquilar, cancha, futbol5, formosa">
+    <link rel="shortcut icon"  href="../../imagenes/logo/logoo.png">
+    <link rel="STYLESHEET" type="text/css" href="../../css/menu.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/pie.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/body.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/mensaje.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/modificarUsuario.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/nombre.css">
+    <script type="text/javascript" src="../../js/usuario/validacion_apellido.js"></script>
+	<script type="text/javascript" src = "../../js/usuario/sweetalert.js " > </script>
 </head>
 <body>
 
+	<header>
+        <img src="../../imagenes/logo/logoPrincipal.png" alt="logo">
+    </header>
 
-	<?php require_once "../../menu.php";?>
-	
-	<br><br>
 
-	<?php echo $mensaje; ?>	
-	
-	<br><br>
+	<div>
 
-		<form method="POST" action= "procesar_modificacion.php">  
+		<?php require_once "../../menu.php";?>
 
-			<input type="hidden" name="txtIdUsuario" value="<?php echo $id_usuario; ?>">
+	</div>
 
-			Documento: <input type="text" name= "txtDocumento" value="<?php echo $user->getDocumento(); ?>">
-			<br><br>
+	<br>
 
-			Nombre: <input type="text" name= "txtNombre" value="<?php echo $user->getNombre(); ?>">
-			<br><br>
+	<div id="Principal">
 
-			Apellido: <input type="text" name= "txtApellido" value="<?php echo $user->getApellido(); ?>">
-			<br><br>
+		<div class="Nombre">
+
+			<?php echo "Modificar Usuario"?>
+
+		</div>
+		
+		<br>
+
+		<div class="mensaje">
+
+			<?php echo $mensaje; ?>	
 			
-			UserName: <input type="text" name= "txtUserName" value="<?php echo $user->getUserName(); ?>">
-			<br><br>
+		</div>
+		
+		<br>
 
-			Contrasena: <input type="text" name= "txtPassword" value="<?php echo $user->getContrasena(); ?>">
-			<br><br>			
+		<div class="Form">
 
-			Fecha Nacimiento: <input type="date" name= "txtFechaNacimiento" value="<?php echo $user->getFechaNacimiento(); ?>">
-			<br><br>
+			<form method="POST" action= "procesar_modificacion.php" class="Formulario" id="FormularioUsuario">  
 
-			Sexo: 
-			<select name="cboSexo">
-				<option value="NULL">--Seleccionar--</option>
+				<input type="hidden" name="txtIdUsuario" value="<?php echo $id_usuario; ?>">
 
-				<?php foreach ($listadoSexo as $sexo): ?>
+				<input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
 
-					<?php 
+				<label for="Documento:">Documento:</label>
+				<input type="text" name= "txtDocumento" id="txtDocumento" value="<?php echo $user->getDocumento(); ?>">
+				<br><br>
 
-					$selected = "";
+				<label for="Nombre">Nombre:</label>
+				<input type="text" name= "txtNombre" value="<?php echo $user->getNombre(); ?>" id="txtNombre">
+				<br><br>
 
-						if ($sexo->getIdSexo() == $user->getRelaSexo()) {
-							$selected = "SELECTED";
-						}
-					?>
-					<option <?php echo $selected; ?> value="<?php echo $sexo->getIdSexo(); ?>">
-						<?php echo $sexo->getDescripcion(); ?>
-					</option>
+				<label for="Apellido">Apellido:</label>
+				<input type="text" name= "txtApellido" value="<?php echo $user->getApellido(); ?>" id="txtApellido">
+				<br><br>
+				
+				<label for="UserName">UserName:</label>
+				<input type="text" name= "txtUserName" value="<?php echo $user->getUserName(); ?>" id="txtUserName">
+				<br><br>
 
-				<?php endforeach?>
-			</select>
+				<label for="Password">Password:</label>
+				<input type="text" name= "txtPassword" value="<?php echo $user->getContrasena(); ?>" id="txtPassword">
+				<br><br>			
 
-			<br><br>
-			
-			Tipo:
-			<select name="cboTipo">
-				<option value="NULL">--Seleccionar--</option>
+				<label for="Fecha Nacimiento">Fecha Nacimiento:</label>
+				<input type="date" name= "txtFechaNacimiento" value="<?php echo $user->getFechaNacimiento(); ?>">
+				<br><br>
 
-				<?php foreach ($listadoTipo as $tipo): ?>
+				<label for="Sexo:">Sexo:</label>
+				<select name="cboSexo">
+					<option value="NULL">--Seleccionar--</option>
 
-					<?php 
+					<?php foreach ($listadoSexo as $sexo): ?>
 
-					$selected = "";
+						<?php 
 
-						if ($tipo->getIdTipo() == $user->getRelaTipo()) {
-							$selected = "SELECTED";
-						}
-					?>
-					<option <?php echo $selected; ?> value="<?php echo $tipo->getIdTipo(); ?>">
-						<?php echo $tipo->getDescripcion(); ?>
-					</option>
+						$selected = "";
 
-				<?php endforeach?>
-			</select>
-			
-			<br><br>
-			<input type="submit" name="Guardar" value="Actualizar">
+							if ($sexo->getIdSexo() == $user->getRelaSexo()) {
+								$selected = "SELECTED";
+							}
+						?>
+						<option <?php echo $selected; ?> value="<?php echo $sexo->getIdSexo(); ?>">
+							<?php echo $sexo->getDescripcion(); ?>
+						</option>
+
+					<?php endforeach?>
+				</select>
+				
+				<label for="Perfil:">Perfil:</label>
+				<select name="cboPerfil" id="cboPerfil">
+					<option value="NULL">--Seleccionar--</option>
+
+					<?php foreach ($listadoPerfil as $perfil): ?>
+
+						<?php 
+
+						$selected = "";
+
+							if ($perfil->getIdPerfil() == $user->getRelaPerfil()) {
+								$selected = "SELECTED";
+							}
+						?>
+						<option <?php echo $selected; ?> value="<?php echo $perfil->getIdPerfil(); ?>">
+							<?php echo $perfil->getDescripcion(); ?>
+						</option>
+
+					<?php endforeach?>
+				</select>
+				
+				<br><br>
+				<input class="Guardar" type="submit" name="Guardar" value="Actualizar" onclick="validarTodo(); ">
 
 
-		</form>
+			</form>
+
+		</div>
+
+	</div>	
+
+	<div  id="Pie">
+
+		<?php require_once "../../pie.php";?>
+
+	</div>
+
 </body>
 </html>

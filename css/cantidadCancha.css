@@ -1,0 +1,25 @@
+
+
+div.cantidad{
+
+	margin-left: 20px;
+	display: inline-block;
+	text-align: center;
+	background-color: white;
+	border: solid;
+  	border-radius: 5%;
+ 	border-color: green;
+	height: 300px;
+ 	width: 300px;
+	font-size: 30px;
+ 	font-weight: bold;
+ 	color: green;
+}
+
+div.cantidad img{
+	padding-top: 20px;
+	padding-left: 1px;
+	height:140px;
+ 	width: 220px;
+}
+

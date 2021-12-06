@@ -39,6 +39,24 @@ class TipoTarifa {
 		return $listadoTipo;
 
 	}
+
+	public static function obtenerPorId ($id) {
+
+			$sql = "SELECT * FROM TIPO_TARIFA WHERE ID_TIPO_TARIFA=" . $id; 
+
+			$database = new MySQL();
+			$datos = $database-> consultar($sql);
+
+			if ($datos->num_rows > 0) {
+				$registro = $datos->fetch_assoc();
+
+				$tipo = new TipoTarifa();
+				$tipo->_idTipoTarifa = $registro["ID_TIPO_TARIFA"];
+				$tipo->_descripcion = $registro["DESCRIPCION"];
+
+				return $tipo;
+			}
+}	
 }
 
 ?>

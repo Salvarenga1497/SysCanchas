@@ -7,6 +7,9 @@ class Modulo {
 	private $_idModulo;
 	private $_descripcion;
 	private $_directorio;
+	private $_nivel;
+	private $_orden;
+	private $_hijoDe;
 
 	public function setIdModulo($_idModulo) 
 	{ 
@@ -25,6 +28,18 @@ class Modulo {
 		return $this;
 	} 
 
+	public function setNivel($_nivel) 
+	{ 
+		$this->_nivel = $_nivel; 
+		return $this;
+	}
+
+	public function setOrden($_orden) 
+	{ 
+		$this->_orden = $_orden; 
+		return $this;
+	}
+
 	public function getDescripcion()
 	{ 
 		return $this->_descripcion; 
@@ -36,16 +51,38 @@ class Modulo {
 		return $this;
 	} 
 
+	public function setHijoDe($_hijoDe) 
+	{ 
+		$this->_hijoDe = $_hijoDe; 
+		return $this;
+	}
+
 	public function getDirectorio()
 	{ 
 		return $this->_directorio; 
 	} 
 
+	public function getNivel()
+	{ 
+		return $this->_nivel; 
+	} 
+
+	public function getOrden()
+	{ 
+		return $this->_orden; 
+	} 
+
+	public function getHijoDe()
+	{ 
+		return $this->_hijoDe; 
+	}
 
 
-	public function obtenerPorIdPerfil($idPerfil) {
 
-		$sql = "SELECT MODULO.ID_MODULO, MODULO.DESCRIPCION, MODULO.DIRECTORIO FROM MODULO JOIN PERFIL_MODULO ON PERFIL_MODULO.RELA_MODULO = MODULO.ID_MODULO JOIN PERFIL ON PERFIL.ID_PERFIL = PERFIL_MODULO.RELA_PERFIL WHERE PERFIL_MODULO.RELA_PERFIL = {$idPerfil}";
+
+	public static function obtenerPorIdPerfil($idPerfil) {
+
+		$sql = "SELECT MODULO.ID_MODULO, MODULO.DESCRIPCION, MODULO.DIRECTORIO, MODULO.NIVEL, MODULO.ORDEN, MODULO.HIJODE FROM MODULO JOIN PERFIL_MODULO ON PERFIL_MODULO.RELA_MODULO = MODULO.ID_MODULO JOIN PERFIL ON PERFIL.ID_PERFIL = PERFIL_MODULO.RELA_PERFIL WHERE PERFIL_MODULO.RELA_PERFIL = {$idPerfil} ORDER BY MODULO.NIVEL, MODULO.ORDEN ASC ";
 
 		$database = new MySQL();
 		$datos = $database->consultar($sql);
@@ -57,6 +94,9 @@ class Modulo {
 			$modulo->_idModulo = $registro["ID_MODULO"];
 			$modulo->_descripcion = $registro["DESCRIPCION"];
 			$modulo->_directorio = $registro["DIRECTORIO"];
+			$modulo->_nivel = $registro["NIVEL"];
+			$modulo->_orden = $registro["ORDEN"];
+			$modulo->_hijoDe = $registro["HIJODE"];
 			$listadoModulos[] = $modulo;
 
 		}
@@ -80,6 +120,9 @@ class Modulo {
 				$modulo->_idModulo = $registro["ID_MODULO"];
 				$modulo->_descripcion = $registro["DESCRIPCION"];
 				$modulo->_directorio = $registro["DIRECTORIO"];
+				$modulo->_nivel = $registro["NIVEL"];
+				$modulo->_orden = $registro["ORDEN"];
+				$modulo->_hijoDe = $registro["HIJODE"];
 				$listadoModulos[] = $modulo;
 			
 		}		  
@@ -101,6 +144,9 @@ class Modulo {
 		$modulo->_idModulo = $registro["ID_MODULO"];
 		$modulo->_descripcion = $registro["DESCRIPCION"];
 		$modulo->_directorio = $registro["DIRECTORIO"];
+		$modulo->_nivel = $registro["NIVEL"];
+		$modulo->_orden = $registro["ORDEN"];
+		$modulo->_hijoDe = $registro["HIJODE"];
 		return $modulo;
 	}
 

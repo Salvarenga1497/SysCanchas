@@ -1,0 +1,44 @@
+div.Form{
+  background-color: white;
+  height: 100px;
+  width: 350px;
+  padding-top:10px;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+form.Formulario{
+  background-color: white;
+  border: solid;
+  border-color: green;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 18px;
+  font-family: "Calibri";
+}
+
+div.Form form.Formulario input.Guardar:hover{
+  background-color: green;
+  color: white;
+}
+
+div.Form form.Formulario input.Guardar{
+  margin-left: 100px;
+}
+
+div.Form form.Formulario input{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}
+
+div.Form form.Formulario select{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}

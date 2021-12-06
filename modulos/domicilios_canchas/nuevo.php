@@ -1,9 +1,13 @@
 <?php
 
 require_once "../../clases/Provincia.php";
-require_once "../../clases/Canchas.php";
+require_once "../../clases/Cancha.php";
 
 $idCanchas = $_GET['id_cancha'];
+$cancha = Cancha::ObtenerPorId($idCanchas);
+$nombre = $cancha->getNombre();
+$idUsuario= $_GET['id_usuario'];
+
 
 $listadoProvincia = Provincia::obtenerTodos();
 
@@ -15,6 +19,19 @@ $listadoProvincia = Provincia::obtenerTodos();
 <!DOCTYPE html>
 <html>
 <head>
+
+	<title>FUTLINE</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Alvarenga Sebastian" >
+    <meta name="description" content="Alquilar canchas de futbol">
+    <meta name="keywords" content="futbol, alquilar, cancha, futbol5, formosa">
+    <link rel="shortcut icon"  href="../../imagenes/logo/logoo.png">
+    <link rel="STYLESHEET" type="text/css" href="../../css/menu.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/pie.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/body.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/formularioNuevoDomicilio.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/nombre.css">
+
 	<script type="text/javascript" src="jquery.3.6.js"></script>
 
 	<script type="text/javascript">
@@ -56,43 +73,74 @@ $listadoProvincia = Provincia::obtenerTodos();
 </head>
 <body>
 
+	<header>
+        <img src="../../imagenes/logo/logoPrincipal.png" alt="logo">
+    </header>
 
-	<?php require_once "../../menu.php";?>
+	<section>
+
+		<?php require_once "../../menu.php";?>
+
+	</section>
+
+	<br><br>
+
+<div id="Principal">
+
+	<div class="Nombre">
+
+		<?php echo "Nuevo Domicilio para la cancha: " . $nombre?>
+
+	</div>
 	
 	<br><br>
 
 
-		<form method="POST" action= "procesar.php">  
+	<div class="Form">
+
+		<form method="POST" action= "procesar.php"  class="Formulario">  
 
 			
 			<input type="hidden" name="txtIdCanchas" value="<?php echo $idCanchas; ?>">
 
+			<input type="hidden" name="txtIdUsuario" value="<?php echo $idUsuario; ?>">
 
-			Calle: <input type="text" name= "txtCalle">
-			<br><br>
 
-			Altura: <input type="text" name= "txtAltura">
-			<br><br>
-
-			Sector: <input type="text" name= "txtSector">
-			<br><br>
+			<label for="Calle">Calle:</label>
+			<input type="text" name= "txtCalle">
 			
-			Manzana: <input type="text" name= "txtManzana">
+			<label for="Altura">Altura:</label>
+			<input type="text" name= "txtAltura">
+			
 			<br><br>
 
-			Casa: <input type="text" name= "txtCasa">
+			<label for="Sector">Sector:</label>
+			<input type="text" name= "txtSector">
+			
+			<label for="Manzana">Manzana:</label>
+			<input type="text" name= "txtManzana">
+			
 			<br><br>
 
-			Torre: <input type="text" name= "txtTorre">
+			<label for="Casa">Casa:</label>
+			<input type="text" name= "txtCasa">
+			
+			<label for="Torre">Torre:</label>
+			<input type="text" name= "txtTorre">
+			
 			<br><br>
 
-			Piso: <input type="text" name= "txtPiso">
+			<label for="Piso">Piso:</label>
+			<input type="text" name= "txtPiso">
+
 			<br><br>
 
-			Departamento: <input type="text" name= "txtDepartamento">
+			<label for="Departamento">Departamento:</label>
+			<input type="text" name= "txtDepartamento">
+			
 			<br><br>
 
-			Provincia:
+			<label for="Provincia">Provincia:</label>
 			<select name="cboProvincias" id="cboProvincias" onchange="cargarLocalidades();">
 				<option value="NULL">--Seleccionar--</option>
 
@@ -105,25 +153,35 @@ $listadoProvincia = Provincia::obtenerTodos();
 				<?php endforeach?>
 			</select>
 
-			<br><br>
 
-			Localidad:
+			<label for="Localidad">Localidad:</label>
 			<select name="cboLocalidades" id="cboLocalidades" onchange="cargarBarrio();">
 				<option value=0>--Seleccionar--</option>
 			</select>
 
 			<br><br>
 
-			Barrio: 
+			<label for="Barrio">Barrio:</label>:
 			<select name="cboBarrio"  id="cboBarrio">
 				<option value=0>--Seleccionar--</option>
 			</select>
 			
 			
 			<br><br>
-			<input type="submit" name="Guardar">
+			<input class="Guardar" type="submit" name="Guardar">
 
 
 		</form>
+
+	</div>
+
+</div>
+
+	<div id="Pie">
+
+        <?php require_once "../../pie.php";?>
+
+    </div>
+    
 </body>
 </html>

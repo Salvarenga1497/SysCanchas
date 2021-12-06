@@ -1,0 +1,63 @@
+div#Principal{
+  display: block;
+  min-height: 513px;
+}
+
+div.Form{
+  margin:0 auto;
+  background-color: white;
+  height: 380px;
+  width: 540px;
+  padding-top:8px;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+form.Formulario{
+  background-color: white;
+  border: solid;
+  border-color: green;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 18px;
+  font-family: "Calibri";
+  width: 500px;
+}
+
+
+div.Form form.Formulario input.Guardar{
+  margin-left: 220px;
+}
+
+div.Form form.Formulario input.Guardar:hover{
+  background-color: green;
+  color: white;
+}
+
+div.Form form.Formulario input{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}
+
+div.Form form.Formulario select{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}
+
+div#Pie{
+display: block;
+  background-color: green;
+  color: #CCC;
+  text-align: center;
+  padding-right: 200px;
+  padding-left: 200px;
+  margin-bottom: -16px;
+  margin-right: 0px;
+  margin-left: -8px;
+
+}

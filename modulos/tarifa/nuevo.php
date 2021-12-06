@@ -1,5 +1,5 @@
 <?php
-require_once "../../clases/Canchas.php";
+require_once "../../clases/Cancha.php";
 require_once "../../clases/TipoTarifa.php";
 require_once "../../js/tarifa/validarComboTipo.js";
 require_once "../../js/tarifa/validarComboCancha.js";
@@ -49,28 +49,63 @@ $listadoTipo = TipoTarifa::obtenerTodos();
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>FUTLINE</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Alvarenga Sebastian" >
+    <meta name="description" content="Alquilar canchas de futbol">
+    <meta name="keywords" content="futbol, alquilar, cancha, futbol5, formosa">
+    <link rel="shortcut icon" href="../../imagenes/logo/logoo.png">
+    <link rel="STYLESHEET" type="text/css" href="../../css/menu.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/formularioNuevoTarifa.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/body.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/mensaje.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/nombre.css">
 </head>
 <body>
 
+	<header>
+        <img src="../../imagenes/logo/logoPrincipal.png" alt="logo">
+    </header>
 
-	<?php require_once "../../menu.php";?>
+	<div>
+
+		<?php require_once "../../menu.php";?>
+
+	</div>
 	
-	<br><br>
+	<br>
 
-	<?php echo $mensaje; ?>	
+	<div id="Principal">
+
+	<div class="Nombre">
+
+		<?php echo "Nueva Tarifa"?>
+
+	</div>
+
+	<br>
+
+	<div class="mensaje">
+
+		<?php echo $mensaje; ?>	
+		
+	</div>
 	
-	<br><br>
+	<br>
 
-		<form method="POST" action= "procesar.php">  
+	<div class="Form">
 
-			Hora Inicio: <input type="time" name= "timeHoraInicio" id="timeHoraInicio">
+		<form method="POST" action= "procesar.php" class="Formulario">  
+
+			<label for="Hora Inicio">Hora Inicio:</label>
+			<input type="time" name= "timeHoraInicio">
 			<br><br>
 
-			Hora Fin: <input type="time" name= "timeHoraFin">
+			<label for="Hora Fin">Hora Fin:</label>
+			<input type="time" name= "timeHoraFin">
 			<br><br>
 
-			Tipo: 
+			<label for="Tipo">Tipo:</label>
 			<select name="cboTipo" id= "cboTipo">
 				<option value="NULL">--Seleccionar--</option>
 
@@ -84,10 +119,11 @@ $listadoTipo = TipoTarifa::obtenerTodos();
 			</select>
 			<br><br>
 			
-			Monto: <input type="number" name= "numMonto" id="numMonto">
+			<label for="Monto">Monto:</label>
+			<input type="number" name= "numMonto" id="numMonto">
 			<br><br>
 
-			Canchas: 
+			<label for="Canchas">Canchas:</label>
 			<select name="cboCanchas" id= "cboCanchas">
 				<option value="NULL">--Seleccionar--</option>
 
@@ -101,9 +137,20 @@ $listadoTipo = TipoTarifa::obtenerTodos();
 			</select>
 			
 			<br><br>
-			<input type="submit" name="Guardar" onclick="validarComboTipo(); validarComboCancha(); validarMonto();">
+			<input class="Guardar" type="submit" name="Guardar" onclick="validarComboTipo(); validarComboCancha(); validarMonto();">
 
 
 		</form>
+
+	</div>
+
+</div>
+
+	<div id="Pie">
+
+		<?php require_once "../../pie.php";?>
+
+	</div>
+	
 </body>
 </html>

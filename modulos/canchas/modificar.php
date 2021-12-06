@@ -1,6 +1,8 @@
 <?php
 require_once "../../clases/Usuario.php";
-require_once "../../clases/Canchas.php";
+require_once "../../clases/Cancha.php";
+require_once "../../js/validacion_nombre.js";
+require_once "../../js/cancha/validar_combo_usuario_cancha.js";
 $mensaje = "";
 
 if (isset($_GET["error"])) {
@@ -22,36 +24,78 @@ if (isset($_GET["error"])) {
 $listadoUsuarios = Usuario::obtenerTodos();
 
 $id_cancha = $_GET["id_cancha"];
+$idUsuario = $_GET["id_usuario"];
 
 
 $cancha = Cancha::obtenerPorId($id_cancha);
+
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>FUTLINE</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Alvarenga Sebastian" >
+    <meta name="description" content="Alquilar canchas de futbol">
+    <meta name="keywords" content="futbol, alquilar, cancha, futbol5, formosa">
+    <link rel="shortcut icon" href="../../imagenes/logo/logoo.png">
+    <link rel="STYLESHEET" type="text/css" href="../../css/menu.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/pie.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/body.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/modificarCancha.css">
+	<link rel="STYLESHEET" type="text/css" href="../../css/nombre.css">
+	<link rel="STYLESHEET" type="text/css" href="../../css/mensaje.css">
+
 </head>
+
 <body>
 
+	<header>
+        <img src="../../imagenes/logo/logoPrincipal.png" alt="logo">
+    </header>
 
-	<?php require_once "../../menu.php";?>
+	<div>
+
+		<?php require_once "../../menu.php";?>
+
+	</div>
+
+	<br><br>
+
+	<div class="Nombre">
+
+		<?php echo "Modificar Cancha"?>
+
+	</div>
 	
 	<br><br>
 
-	<?php echo $mensaje; ?>	
+<div id="Principal">
+
+	<div class="mensaje">
+
+		<?php echo $mensaje; ?>	
+		
+	</div>
 	
 	<br><br>
 
-		<form method="POST" action= "procesar_modificacion.php">  
+	<div class="Form">
+
+		<form method="POST" action= "procesar_modificacion.php" class="Formulario">  
 			
 			<input type="hidden" name="txtIdCancha" value="<?php echo $id_cancha; ?>">
 
-			Nombre: <input type="text" name= "txtNombre" value="<?php echo $cancha->getNombre(); ?>">
+			<input type="hidden" name="txtIdUsuario" value="<?php echo $idUsuario; ?>">
+
+
+			<label for="Nombre:">Nombre:</label>
+			<input type="text" name= "txtNombre" value="<?php echo $cancha->getNombre(); ?>" id="txtNombre">
 			<br><br>
 
-			Usuario: 
-			<select name="cboUsuario">
+			<label for="Usuario:">Usuario:</label>  
+			<select name="cboUsuario" id="cboUsuario">
 				<option value="NULL">--Seleccionar--</option>
 
 				<?php foreach ($listadoUsuarios as $user): ?>
@@ -78,9 +122,19 @@ $cancha = Cancha::obtenerPorId($id_cancha);
 
 			<br><br>
 
-			<input type="submit" name="Guardar" value="Actualizar">
+			<input class="Guardar" type="submit" name="Guardar" value="Actualizar" onclick="validarNombre();validarCombo();">
 
 
 		</form>
+
+	</div>
+
+</div>
+
+	<div  id="Pie">
+
+		<?php require_once "../../pie.php";?>
+
+	</div>
 </body>
 </html>

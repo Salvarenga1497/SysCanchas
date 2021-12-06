@@ -1,0 +1,12 @@
+div.Nuevo a{
+  display: inline-block;
+  background-color: green;
+  color:white;
+  font-family: "Calibri";
+  font-size: 22px;
+  text-decoration:none;
+  border-radius: 5px;
+  margin-left: 50px;
+  padding: 3px;
+  font-weight: bold;
+}

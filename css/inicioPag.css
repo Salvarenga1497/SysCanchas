@@ -1,0 +1,43 @@
+div#Principal{
+	display: block;
+  min-height: 473px;
+}
+
+div.bienvenida p{
+	background: linear-gradient(to right, green, white);
+	text-align: center;
+	font-family: "Calibri";
+    font-size: 40px;
+    padding: 10px;
+}
+
+
+body {
+	margin:0px;
+	background-color: ;
+}
+
+div img{
+	padding-left: 555px;
+	height: 180px;
+	width: 200px;
+}
+div.Frase p{
+	text-align: center;
+	color: green;
+	font-family: "Brush Script MT";
+	font-weight: bold;
+	font-size: 40px;
+}
+
+div#Pie{
+display: block;
+  background-color: green;
+  color: #CCC;
+  text-align: center;
+  padding-right: 350px;
+  padding-left: 350px;
+  margin-left: -8px;
+  margin-bottom: -16px;
+
+}

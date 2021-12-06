@@ -1,8 +1,7 @@
 <?php
 
 require_once "../../clases/Usuario.php";
-require_once "../../js/validacion_nombre.js";
-require_once "../../js/cancha/validar_combo_usuario_cancha.js";
+
 $mensaje = "";
 
 if (isset($_GET["error"])) {
@@ -22,33 +21,72 @@ if (isset($_GET["error"])) {
 
 }
 
-$listadoUsuarios = Usuario::obtenerTodos();
-
+$listadoUsuarios = Usuario::obtenerTodoss();
+$idUsuario = $_GET['id_usuario'];
 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>FUTLINE</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Alvarenga Sebastian" >
+    <meta name="description" content="Alquilar canchas de futbol">
+    <meta name="keywords" content="futbol, alquilar, cancha, futbol5, formosa">
+    <link rel="shortcut icon" href="../../imagenes/logo/logoo.png">
+    <link rel="STYLESHEET" type="text/css" href="../../css/menu.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/formularioNuevaCancha.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/body.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/mensaje.css">
+    <link rel="STYLESHEET" type="text/css" href="../../css/nombre.css">
+    <script type="text/javascript" src="../../js/cancha/validacion_nombre.js"></script>
+    <script type="text/javascript" src = "../../js/usuario/sweetalert.js " > </script>
 </head>
 <body>
 
+	<header>
+        <img src="../../imagenes/logo/logoPrincipal.png" alt="logo">
+    </header>
 
-	<?php require_once "../../menu.php";?>
+	<div>
+
+		<?php require_once "../../menu.php";?>
+
+	</div>
 
 	<br><br>
 
-	<?php echo $mensaje; ?>	
+<div id="Principal">
+
+	<div class="Nombre">
+
+		<?php echo "Nueva Cancha"?>
+
+	</div>
+
+	<br><br>
+
+	<div class="mensaje">
+
+		<?php echo $mensaje; ?>	
+		
+	</div>
+	
 	
 	<br><br>
 
-		<form method="POST" action= "procesar.php" id="form"> 
+	<div class="Form">
 
-			Nombre: <input type="text" name= "txtNombre" id="txtNombre">
+		<form method="POST" action= "procesar.php" class="Formulario" id="FormularioCancha"> 
+
+			<input type="hidden" name="txtIdUsuario" value="<?php echo $idUsuario; ?>">
+
+			<label for="Nombre">Nombre:</label>
+			<input type="text" name= "txtNombre" id="txtNombre">
 			<br><br>
 
-			Usuario: 
+			<label for="Usuario">Usuario:</label> 
 			<select name="cboUsuario" id="cboUsuario">
 				<option value="NULL">--Seleccionar--</option>
 
@@ -62,9 +100,20 @@ $listadoUsuarios = Usuario::obtenerTodos();
 			</select>
 			
 			<br><br>
-			<input type="submit" value="Guardar" onclick="validarNombre();validarCombo();">
+			<input class="Guardar" type="submit" value="Guardar" onclick="validarNombre(); ">
 
 
 		</form>
+
+	</div>
+
+</div>
+
+	<div id="Pie">
+
+        <?php require_once "../../pie.php";?>
+
+    </div>
+    
 </body>
 </html>

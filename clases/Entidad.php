@@ -10,8 +10,8 @@ class Entidad  {
 	protected $_apellido;
 	protected $_documento;
 	protected $_fechaNacimiento;
-	protected $_relatipo;
 	protected $_relasexo;
+	protected $_estado;
 
 	public function getIdEntidad()
 	{ 
@@ -68,17 +68,7 @@ class Entidad  {
 		 $this->_fechaNacimiento = $_fechaNacimiento; 
 		 return $this;
 	} 
-		  
-	public function getRelaTipo()
-	{ 
-		 return $this->_relatipo; 
-	} 
-
-	public function setRelaTipo($_relatipo) 
-	{ 
-		 $this->_relatipo = $_relatipo; 
-		 return $this;
-	} 
+		   
 
 	public function getRelaSexo()
 	{ 
@@ -90,6 +80,18 @@ class Entidad  {
 		 $this->_relasexo = $_relasexo; 
 		 return $this;
 	} 
+
+	public function getEstado()
+	{ 
+		 return $this->_estado; 
+	} 
+		 
+	public function setEstado($_relasexo) 
+	{ 
+		 $this->_estado = $_estado; 
+		 return $this;
+	} 
+
 		  
 		  
 
@@ -97,7 +99,7 @@ class Entidad  {
 
 		$database = new MySQL();
 
-			$sql = "INSERT INTO ENTIDADES (ID_ENTIDADES,NOMBRE,APELLIDO,DOC,FECHA_NAC, ESTADO, RELA_SEXO, RELA_TIPO) VALUES ( NULL, '{$this->_nombre}', '{$this->_apellido}','{$this->_documento}', '{$this->_fechaNacimiento}', 1, {$this->_relasexo}, {$this->_relatipo})";
+			$sql = "INSERT INTO ENTIDADES (ID_ENTIDADES,NOMBRE,APELLIDO,DOC,FECHA_NAC, ESTADO, RELA_SEXO) VALUES ( NULL, '{$this->_nombre}', '{$this->_apellido}','{$this->_documento}', '{$this->_fechaNacimiento}', 1, {$this->_relasexo})";
 
 			$idEntidad = $database->insertar($sql);
 
@@ -106,7 +108,7 @@ class Entidad  {
 		
 		public function actualizar() {
 
-			$sql = "UPDATE ENTIDADES SET NOMBRE ='{$this->_nombre}', APELLIDO = '{$this->_apellido}', DOC = '{$this->_documento}', FECHA_NAC ='{$this->_fechaNacimiento}', RELA_TIPO = {$this->_relatipo}, RELA_SEXO = {$this->_relasexo} WHERE ENTIDADES.ID_ENTIDADES = {$this->_relaEntidades} ";	
+			$sql = "UPDATE ENTIDADES SET NOMBRE ='{$this->_nombre}', APELLIDO = '{$this->_apellido}', DOC = '{$this->_documento}', FECHA_NAC ='{$this->_fechaNacimiento}', RELA_SEXO = {$this->_relasexo} WHERE ENTIDADES.ID_ENTIDADES = {$this->_relaEntidades} ";	
 			
 			
 			$database = new MySQL();

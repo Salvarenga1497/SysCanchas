@@ -1,0 +1,74 @@
+div#Principal{
+  display: block;
+  min-height: 580px;
+}
+
+body {
+  display: block;
+  padding: 0px;
+  background-image: url(../imagenes/logo/fondo.png) ;
+  background-size: 13%;
+}
+
+section.Mensaje{
+  display: block;
+  color: red;
+  text-align: center;
+  margin: auto;
+  font-size: 19px;}
+
+section.Titulo{
+  display: block;
+  font-family: "Helvetica"; 
+  width: 20%;
+  text-align: center;
+  margin: auto;}
+
+
+form.Login{
+  display: block;
+  background-color: white;
+  margin: 0 auto;
+  text-align: center;
+  align-content: center;
+  height: 250px;
+  width: 225px;
+  border: solid;
+  border-radius: 5%;
+  border-color: green;
+  padding: 10px;
+}
+
+div img{
+float: center;
+height: 50px;
+width: 230px;}
+
+form label.nombre{
+  font-family: "Arial"; 
+  color: green;
+  font-weight: bold;
+}
+
+form input{
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+}
+
+form input.Iniciar:hover{
+  background-color: green;
+  color: white;
+}
+
+div#Pie{
+display: block;
+  background-color: green;
+  color: #CCC;
+  text-align: center;
+  padding-right: 340px;
+  padding-left: 350px;
+  margin-right: -8px;
+  margin-left: -8px;
+  margin-bottom: -16px;
+}

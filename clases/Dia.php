@@ -1,5 +1,4 @@
 <?php
-
 require_once "MySQL.php";
 
 class Dia {
@@ -69,8 +68,6 @@ class Dia {
 	}
 
 
-
-
 	public function getIdDia()
 	{ 
 		 return $this->_idDia;
@@ -117,6 +114,7 @@ class Dia {
 					. "FROM DIAS "
 					. "INNER JOIN AGENDA ON AGENDA.ID_AGENDA=DIAS.RELA_AGENDA "
 					. "WHERE ID_AGENDA=" . $id;
+			
 
 
 			$database = new MySQL();
@@ -141,6 +139,8 @@ class Dia {
 		}
 
 	public function guardar() {
+
+		
 
 			$database = new MySQL();
 

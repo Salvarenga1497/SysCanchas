@@ -2,6 +2,7 @@
 
 require_once "../../clases/Contacto.php";
 
+$idUsuario = $_POST["txtIdUsuario"];
 $idEntidad = $_POST["txtIdEntidad"];
 $idTipoContacto = $_POST["cboTipoContacto"];
 $valor = $_POST["txtValor"];
@@ -14,6 +15,6 @@ $contacto->setValor($valor);
 
 $contacto->guardar();
 
-header("location: contacto.php?id_entidad=" . $idEntidad);
+header("location: contacto.php?id_entidad=" . $idEntidad . "&id_usuario=" . $idUsuario);
 
 ?>

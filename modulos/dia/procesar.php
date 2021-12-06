@@ -4,6 +4,7 @@ require_once "../../clases/Dia.php";
 require_once "../../clases/Agenda.php";
 
 $idAgenda = $_POST["txtIdAgenda"];
+$idUsuario = $_POST["txtIdUsuario"];
 
 if ( isset($_POST["chkLunes"]) ) {
     $chkLunes = $_POST["chkLunes"];
@@ -61,6 +62,6 @@ $dia->setDomingo($chkDomingo);
 
 $dia->guardar();
 
-header("location: nuevo.php?id_agenda=" . $idAgenda);
+header("location: ../agenda/listado.php?id_usuario=" . $idUsuario);
 
 ?>

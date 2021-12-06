@@ -4,6 +4,7 @@ require_once "../../clases/Domicilio.php";
 require_once "../../clases/Usuario.php";
 
 $idEntidad = $_POST["txtIdEntidad"];
+$idUsuario= $_POST["txtIdUsuario"];
 
 
 $calle = $_POST['txtCalle'];
@@ -34,7 +35,7 @@ $domicilio->setRelaBarrio($barrio);
 
 $domicilio->guardar();
 
-header("location: listado.php?id_entidad=" . $idEntidad . "&modulo=usuarios");
+header("location: listado.php?id_entidad=" . $idEntidad ."&id_usuario=". $idUsuario. "&modulo=usuarios");
 
 
 ?>

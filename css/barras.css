@@ -1,0 +1,177 @@
+.grafico {
+position: relative; 
+width: 280px;
+border: 1px solid #B1D632;
+padding: 2px;
+margin-left: 10px;
+margin-top: 10px;
+}
+
+.grafico .barra90{
+display: inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 80%;
+}
+
+.grafico .barra70{
+display: inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 70%;
+}
+
+.grafico .barra50{
+display: inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 50%;
+}
+
+
+
+.grafico .barra span {
+position: absolute; left: 1em;
+}
+
+div.estadistica{
+  display: inline-block¡;
+  margin-left: 10px;
+  background-color: white;
+  height: 250px;
+  width: 300px;
+  padding-top:5px;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  font-weight: bold;
+}
+div.titulo{
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align:center;
+  background-color: white;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  background-color: green;
+  color: white;
+}
+
+
+div.estadistica2{
+  margin-top: -260px;
+  margin-left: 400px;
+  position: center;
+  background-color: white;
+  height: 250px;
+  width: 380px;
+  padding-top:5px;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.grafico2 {
+position: relative; 
+width: 360px;
+border: 1px solid #B1D632;
+padding: 2px;
+margin-left: 10px;
+margin-top: 10px;
+}
+
+.grafico2 .barra90{
+display: inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 70%;
+}
+
+.grafico2 .barra70{
+display: inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 70%;
+}
+
+.grafico2 .barra50{
+display: inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 50%;
+}
+
+.grafico2 .barra span {
+position: absolute; left: 1em;
+}
+
+div.estadistica3{
+  margin-top: -260px;
+  margin-left: 900px;
+  position: center;
+  background-color: white;
+  height: 200px;
+  width: 380px;
+  padding-top:5px;
+  border: solid;
+  border-color: green;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.grafico3 .barra90{
+display: inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 70%;
+}
+
+.grafico3 .barra70{
+display:inline-block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+width: 15%;
+}
+
+.grafico3 {
+position: relative; 
+width: 360px;
+border: 1px solid #B1D632;
+padding: 2px;
+margin-left: 10px;
+margin-top: 10px;
+}

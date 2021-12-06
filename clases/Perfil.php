@@ -67,6 +67,8 @@ class Perfil {
 		$perfil = new Perfil();
 		$perfil->_idPerfil = $registro["ID_PERFIL"];
 		$perfil->_descripcion = $registro["DESCRIPCION"];
+		$perfil->_listadoModulos = Modulo::obtenerPorIdPerfil($perfil->_idPerfil);
+
 
 		return $perfil;
 
@@ -101,7 +103,10 @@ class Perfil {
 
 			$sql = "INSERT INTO PERFIL (ID_PERFIL,DESCRIPCION) VALUES (NULL, '{$this->_descripcion}')";
 
-			$database->insertar($sql);
+			$idPerfil = $database->insertar($sql);
+
+			$this->_idPerfil = $idPerfil;
+
 		}
 
 		public function actualizar() {
@@ -119,8 +124,6 @@ class Perfil {
 
 			$sql = "DELETE FROM PERFIL WHERE ID_PERFIL ={$this->_idPerfil}";
 
-
-			
 			$database-> eliminar($sql);				
 
 }
